@@ -1,0 +1,6 @@
+# Created by .gitignore support plugin (hsz.mobi)
+gradlew
+gradlew.bat
+.idea
+gradle
+spring-boot-throwaway-branches.iml
