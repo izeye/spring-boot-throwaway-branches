@@ -33,7 +33,9 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    
+    runtime("com.h2database:h2:1.4.189")
 
     provided("org.projectlombok:lombok:$lombokVersion")
 
