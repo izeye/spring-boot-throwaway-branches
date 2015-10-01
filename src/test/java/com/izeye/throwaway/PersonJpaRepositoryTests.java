@@ -17,10 +17,10 @@ import static org.hamcrest.core.Is.is;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
-public class PersonRepositoryTests {
+public class PersonJpaRepositoryTests {
 	
 	@Autowired
-	PersonRepository personRepository;
+	PersonJpaRepository personJpaRepository;
 	
 	@Test
 	@Transactional
@@ -29,9 +29,9 @@ public class PersonRepositoryTests {
 		person.setFirstName("Johnny");
 		person.setLastName("Lim");
 		person.setAge(35);
-		personRepository.save(person);
+		personJpaRepository.save(person);
 
-		List<Person> persons = personRepository.findAll();
+		List<Person> persons = personJpaRepository.findAll();
 		assertThat(persons.size(), is(1));
 		assertThat(persons.get(0), is(person));
 	}

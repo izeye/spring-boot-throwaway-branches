@@ -25,7 +25,7 @@ sourceCompatibility = 1.8
 version = '1.0'
 
 repositories {
-    mavenLocal()
+//    mavenLocal() // To fetch dependencies' sources.
     jcenter()
     maven { url "http://repo.spring.io/libs-release" }
     maven { url "http://repo.spring.io/libs-milestone" }
@@ -34,6 +34,7 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-data-elasticsearch")
     
     runtime("com.h2database:h2:1.4.189")
 
