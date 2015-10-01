@@ -24,6 +24,8 @@ sourceCompatibility = 1.8
 
 version = '1.0'
 
+//ext['jackson.version'] = '2.5.4'
+
 repositories {
     mavenLocal()
     jcenter()

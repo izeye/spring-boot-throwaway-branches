@@ -26,7 +26,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
  * Created by izeye on 15. 10. 1..
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest(randomPort = true)
 public class PersonControllerTests {
 	
