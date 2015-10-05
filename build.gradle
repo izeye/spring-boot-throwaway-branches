@@ -25,15 +25,16 @@ sourceCompatibility = 1.8
 version = '1.0'
 
 repositories {
-    mavenLocal()
     jcenter()
     maven { url "http://repo.spring.io/libs-release" }
     maven { url "http://repo.spring.io/libs-milestone" }
     maven { url "http://repo.spring.io/snapshot" }
+    mavenLocal()
 }
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
 
     provided("org.projectlombok:lombok:$lombokVersion")
 
