@@ -38,4 +38,5 @@ dependencies {
     provided("org.projectlombok:lombok:$lombokVersion")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
