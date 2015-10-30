@@ -19,6 +19,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'propdeps'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 
@@ -41,6 +42,12 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
-//    gradleVersion = '2.7'
+    gradleVersion = '2.8'
+}
+
+ext {
+    mainClassName = 'com.izeye.throwaway.Application'
+}
+
+task myBootRepackage(type: BootRepackage, dependsOn: jar) {
 }
