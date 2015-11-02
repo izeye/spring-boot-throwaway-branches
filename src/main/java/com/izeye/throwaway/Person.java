@@ -17,4 +17,6 @@ public class Person {
 	
 	private Date createdTime;
 	
+	private Fruit favoriteFruit;
+	
 }

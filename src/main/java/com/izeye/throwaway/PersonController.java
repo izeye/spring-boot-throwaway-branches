@@ -23,6 +23,7 @@ public class PersonController {
 		person.setLastName("Lim");
 		person.setAge(35);
 		person.setCreatedTime(new Date());
+		person.setFavoriteFruit(new Apple("Apple-specific property"));
 		
 		return Collections.singletonList(person);
 	}
