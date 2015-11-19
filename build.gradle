@@ -34,7 +34,7 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
-    compile("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+    compile("org.elasticsearch:elasticsearch:$elasticsearchVersion")
 
     provided("org.projectlombok:lombok:$lombokVersion")
 
