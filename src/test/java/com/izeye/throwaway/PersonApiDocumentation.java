@@ -16,6 +16,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.snippet.Attributes.key;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,9 +45,22 @@ public class PersonApiDocumentation {
 	}
 	
 	@Test
-	public void test() throws Exception {
+	public void documentPersons() throws Exception {
 		this.mockMvc.perform(get("/persons").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andDo(document("persons"));
+				.andExpect(status().isOk())
+				.andDo(document("persons",
+						responseFields(
+								fieldWithPath("[].id").description("ID")
+										.attributes(key("deprecation").value("")),
+								fieldWithPath("[].first_name").description("First name")
+										.attributes(key("deprecation").value("")),
+								fieldWithPath("[].last_name").description("Last name")
+										.attributes(key("deprecation").value("")),
+								fieldWithPath("[].age").description("Age")
+										.attributes(key("deprecation").value("Age is not available now.")),
+								fieldWithPath("[].created_time").description("Created time")
+										.attributes(key("deprecation").value(""))
+						)));
 	}
 	
 }

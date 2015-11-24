@@ -1,3 +1,4 @@
 include::{snippets}/persons/curl-request.adoc[]
 include::{snippets}/persons/http-request.adoc[]
 include::{snippets}/persons/http-response.adoc[]
+include::{snippets}/persons/response-fields.adoc[]
