@@ -21,4 +21,6 @@ public class Person {
 	private String lastName;
 	private int age;
 	
+	private Fruit favoriteFruit;
+	
 }
