@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
  * Created by izeye on 16. 1. 5..
  */
 @RestController
-@RequestMapping("/rest-proxy")
+@RequestMapping(path = "/rest-proxy")
 public class RestProxyController {
 	
 	private final RestTemplate restTemplate = new RestTemplate();
