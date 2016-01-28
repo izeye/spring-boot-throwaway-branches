@@ -2,6 +2,7 @@ package com.izeye.throwaway;
 
 import com.izeye.throwaway.trace.CustomTraceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.trace.TraceRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,9 @@ public class PersonController {
 	@Autowired
 	private CustomTraceService customTraceService;
 	
+	@Autowired
+	private TraceRepository traceRepository;
+	
 	private int i = 0;
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -29,6 +33,8 @@ public class PersonController {
 		Map<String, Object> trace = new HashMap<>();
 		trace.put("id", i++);
 		customTraceService.add(trace);
+
+		traceRepository.add(trace);
 		
 		Person person = new Person();
 		person.setId(1L);
