@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -33,6 +34,12 @@ public class PersonControllerTests {
 	@Value("${local.server.port}")
 	int port;
 	
+	@Value("${security.user.name}")
+	String username;
+	
+	@Value("${security.user.password}")
+	String password;
+	
 	@Autowired
 	ObjectMapper objectMapper;
 
@@ -40,7 +47,7 @@ public class PersonControllerTests {
 	
 	@Before
 	public void setUp() {
-		this.restTemplate = new RestTemplate();
+		this.restTemplate = new TestRestTemplate(username, password);
 		for (HttpMessageConverter<?> messageConverter : this.restTemplate.getMessageConverters()) {
 			if (messageConverter instanceof MappingJackson2HttpMessageConverter) {
 				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter
