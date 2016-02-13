@@ -59,14 +59,14 @@ public class PersonControllerTests {
 	
 	@Test
 	public void testGetAllWithStringResponse() {
-		String url = "http://localhost:{port}/persons";
+		String url = "http://localhost:{port}/api/persons";
 		String response = this.restTemplate.getForObject(url, String.class, this.port);
 		System.out.println(response);
 	}
 
 	@Test
 	public void testGetAllWithTypedResponse() {
-		String url = "http://localhost:{port}/persons";
+		String url = "http://localhost:{port}/api/persons";
 		ResponseEntity<List<Person>> response = this.restTemplate.exchange(
 				url, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Person>>() {}, this.port);

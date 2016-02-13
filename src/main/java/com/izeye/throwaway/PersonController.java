@@ -17,7 +17,7 @@ import java.util.Map;
  * Created by izeye on 15. 10. 1..
  */
 @RestController
-@RequestMapping(path = "/persons")
+@RequestMapping(path = "/api/persons")
 public class PersonController {
 	
 	@Autowired
