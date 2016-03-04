@@ -33,13 +33,13 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.0.0")
 
-    provided("org.projectlombok:lombok:$lombokVersion")
+    provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.7'
+    gradleVersion = '2.11'
 }
