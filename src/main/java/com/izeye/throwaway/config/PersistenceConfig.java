@@ -1,5 +1,6 @@
 package com.izeye.throwaway.config;
 
+import com.izeye.throwaway.domain.Person;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -30,6 +31,9 @@ public class PersistenceConfig {
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setConfigLocation(myBatisProperties.getConfigLocation());
 		sqlSessionFactoryBean.setMapperLocations(myBatisProperties.getMapperLocations());
+		
+		sqlSessionFactoryBean.setTypeAliases(new Class<?>[]{ Person.class });
+
 		return sqlSessionFactoryBean;
 	}
 
