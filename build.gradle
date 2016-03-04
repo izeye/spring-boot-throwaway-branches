@@ -34,6 +34,8 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
+    
+    compile("com.google.guava:guava:$guavaVersion")
 
     provided("org.projectlombok:lombok:$lombokVersion")
 
@@ -41,5 +43,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.7'
+    gradleVersion = '2.11'
 }
