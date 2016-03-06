@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toList;
  * Created by izeye on 16. 3. 6..
  */
 public class SpringBootVFS extends VFS {
+	
 	@Override
 	public boolean isValid() {
 		return true;

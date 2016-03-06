@@ -7,5 +7,6 @@
 
     <typeAliases>
         <package name="com.izeye.throwaway.domain" />
+        <package name="com.izeye.throwaway.animal.domain" />
     </typeAliases>
 </configuration>
