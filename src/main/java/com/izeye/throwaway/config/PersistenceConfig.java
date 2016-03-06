@@ -30,6 +30,7 @@ public class PersistenceConfig {
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setConfigLocation(myBatisProperties.getConfigLocation());
 		sqlSessionFactoryBean.setMapperLocations(myBatisProperties.getMapperLocations());
+		sqlSessionFactoryBean.setVfs(SpringBootVFS.class);
 		return sqlSessionFactoryBean;
 	}
 
