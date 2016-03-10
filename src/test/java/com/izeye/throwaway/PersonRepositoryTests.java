@@ -22,18 +22,39 @@ public class PersonRepositoryTests {
 	@Autowired
 	PersonRepository personRepository;
 	
+	@Autowired
+	SomeGroupRepository someGroupRepository;
+	
 	@Test
 	@Transactional
 	public void test() {
 		Person person = new Person();
 		person.setFirstName("Johnny");
 		person.setLastName("Lim");
-		person.setAge(35);
+		person.setAge(36);
 		personRepository.save(person);
 
 		List<Person> persons = personRepository.findAll();
 		assertThat(persons.size(), is(1));
 		assertThat(persons.get(0), is(person));
+	}
+	
+	@Test
+	@Transactional
+	public void testSomeMethodUsingQueryAnnotation() {
+		SomeGroup group = new SomeGroup();
+		group.setName("CTB");
+		someGroupRepository.save(group);
+
+		Person person = new Person();
+		person.setFirstName("Johnny");
+		person.setLastName("Lim");
+		person.setAge(36);
+		person.setGroup(group);
+		personRepository.save(person);
+		
+		List<Person> persons = personRepository.someMethodUsingQueryAnnotation(group);
+		System.out.println(persons);
 	}
 	
 }

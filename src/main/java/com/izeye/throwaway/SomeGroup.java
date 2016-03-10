@@ -5,24 +5,18 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
- * Created by izeye on 15. 9. 19..
+ * Created by izeye on 16. 3. 10..
  */
 @Entity
 @Data
-public class Person {
-	
+public class SomeGroup {
+
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	private String firstName;
-	private String lastName;
-	private int age;
-	
-	@ManyToOne
-	private SomeGroup group;
+	private String name;
 	
 }
