@@ -1,4 +1,15 @@
+# Spring REST Docs
+
+## With MockMvc
+
 include::{snippets}/persons/curl-request.adoc[]
 include::{snippets}/persons/http-request.adoc[]
 include::{snippets}/persons/http-response.adoc[]
 include::{snippets}/persons/response-fields.adoc[]
+
+## REST Assured
+
+include::{snippets}/persons_with_rest_assured/curl-request.adoc[]
+include::{snippets}/persons_with_rest_assured/http-request.adoc[]
+include::{snippets}/persons_with_rest_assured/http-response.adoc[]
+include::{snippets}/persons_with_rest_assured/response-fields.adoc[]
