@@ -35,6 +35,8 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
     compile("org.elasticsearch:elasticsearch:$elasticsearchVersion")
+    
+    compile("com.fasterxml.jackson.core:jackson-databind")
 
     provided("org.projectlombok:lombok")
 
