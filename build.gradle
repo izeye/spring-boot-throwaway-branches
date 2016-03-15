@@ -35,7 +35,11 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
 
-    provided("org.projectlombok:lombok:$lombokVersion")
+    provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.11'
 }
