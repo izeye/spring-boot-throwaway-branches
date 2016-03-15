@@ -36,9 +36,13 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     
-    runtime("com.h2database:h2:1.4.189")
+    runtime("com.h2database:h2")
 
-    provided("org.projectlombok:lombok:$lombokVersion")
+    provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.11'
 }
