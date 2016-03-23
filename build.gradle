@@ -33,9 +33,12 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 
-    provided("org.projectlombok:lombok")
+    compile("net.sourceforge.nekohtml:nekohtml")
+    compile("org.codehaus.janino:janino")
+
+    provided("org.projectlombok:lombok:$lombokVersion")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
