@@ -1,13 +1,13 @@
-package com.izeye.throwaway;
+package com.izeye.throwaway.person.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.izeye.throwaway.person.domain.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.test.context.web.WebIntegrationTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,6 @@ import static org.hamcrest.core.IsNull.notNullValue;
  * Created by izeye on 15. 10. 1..
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
 @WebIntegrationTest(randomPort = true)
 public class PersonControllerTests {
 	

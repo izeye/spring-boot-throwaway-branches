@@ -1,4 +1,4 @@
-package com.izeye.throwaway;
+package com.izeye.throwaway.person.domain;
 
 import org.junit.Test;
 
