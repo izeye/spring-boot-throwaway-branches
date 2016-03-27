@@ -38,6 +38,9 @@ dependencies {
     provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    // FIXME: See https://github.com/spring-projects/spring-boot/pull/5500
+    testCompile("org.apache.commons:commons-lang3:3.4")
 }
 
 task wrapper(type: Wrapper) {

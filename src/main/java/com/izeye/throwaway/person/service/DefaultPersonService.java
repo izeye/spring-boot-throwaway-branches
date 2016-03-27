@@ -1,10 +1,10 @@
 package com.izeye.throwaway.person.service;
 
 import com.izeye.throwaway.person.domain.Person;
+import com.izeye.throwaway.person.domain.TestDomainFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,23 +15,13 @@ public class DefaultPersonService implements PersonService {
 
 	@Override
 	public List<Person> findAll() {
-		return Collections.singletonList(createDummyPerson());
+		return Collections.singletonList(TestDomainFactory.createPerson());
 	}
 
 	@Override
 	public Person findByFirstName(String firstName) {
-		Person person = createDummyPerson();
+		Person person = TestDomainFactory.createPerson();
 		person.setFirstName(firstName);
-		return person;
-	}
-
-	private Person createDummyPerson() {
-		Person person = new Person();
-		person.setId(1L);
-		person.setFirstName("Johnny");
-		person.setLastName("Lim");
-		person.setAge(35);
-		person.setCreatedTime(new Date());
 		return person;
 	}
 	
