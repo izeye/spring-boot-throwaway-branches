@@ -16,7 +16,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +27,7 @@ import static org.mockito.BDDMockito.given;
 /**
  * Created by izeye on 15. 10. 1..
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @WebIntegrationTest(randomPort = true)
 public class PersonControllerTests {
 	
