@@ -24,6 +24,10 @@ sourceCompatibility = 1.8
 
 version = '1.0'
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
 repositories {
     jcenter()
     maven { url "http://repo.spring.io/libs-release" }
