@@ -16,6 +16,7 @@ public class PersonTests {
 		
 		Person person = new Person();
 		person.setId(personId);
+		System.out.println(person);
 		
 		assertThat(person.getId(), is(personId));
 	}
