@@ -1,6 +1,8 @@
-package com.izeye.throwaway;
+package com.izeye.throwaway.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.izeye.throwaway.Application;
+import com.izeye.throwaway.domain.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

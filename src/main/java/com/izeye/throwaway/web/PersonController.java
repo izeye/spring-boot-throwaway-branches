@@ -1,5 +1,6 @@
-package com.izeye.throwaway;
+package com.izeye.throwaway.web;
 
+import com.izeye.throwaway.domain.Person;
 import com.izeye.throwaway.trace.CustomTraceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.trace.TraceRepository;
