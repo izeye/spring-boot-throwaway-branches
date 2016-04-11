@@ -5,12 +5,14 @@ buildscript {
         maven { url "http://repo.spring.io/libs-release" }
         maven { url "http://repo.spring.io/libs-milestone" }
         maven { url "http://repo.spring.io/snapshot" }
-        maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url "http://repo.spring.io/plugins-release" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
+        classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:$gitPropertiesPluginVersion")
     }
 }
 
@@ -19,6 +21,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'propdeps'
+apply plugin: 'com.gorylenko.gradle-git-properties'
 
 sourceCompatibility = 1.8
 
