@@ -11,8 +11,7 @@ import java.util.Date;
 public class Person {
 	
 	private Long id;
-	private String firstName;
-	private String lastName;
+	private PersonName name;
 	private int age;
 	
 	private Date createdTime;

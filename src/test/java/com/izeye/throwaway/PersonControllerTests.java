@@ -69,8 +69,8 @@ public class PersonControllerTests {
 		
 		Person person = persons.get(0);
 		assertThat(person.getId(), is(notNullValue()));
-		assertThat(person.getFirstName(), is(notNullValue()));
-		assertThat(person.getLastName(), is(notNullValue()));
+		assertThat(person.getName().getFirstName(), is(notNullValue()));
+		assertThat(person.getName().getLastName(), is(notNullValue()));
 		assertThat(person.getAge(), is(notNullValue()));
 		assertThat(person.getCreatedTime(), is(notNullValue()));
 	}
