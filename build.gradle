@@ -24,8 +24,6 @@ sourceCompatibility = 1.8
 
 version = '1.0'
 
-//ext['jackson.version'] = '2.5.4'
-
 repositories {
     mavenLocal()
     jcenter()
@@ -34,10 +32,12 @@ repositories {
     maven { url "http://repo.spring.io/snapshot" }
 }
 
+//ext['jackson.version'] = '2.6.5'
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
 
-    provided("org.projectlombok:lombok:$lombokVersion")
+    provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
