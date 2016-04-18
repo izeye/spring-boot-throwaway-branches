@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringApplicationTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
@@ -28,9 +28,7 @@ import static org.mockito.BDDMockito.given;
  * Created by izeye on 15. 10. 1..
  */
 @RunWith(SpringRunner.class)
-@SpringApplicationTest(
-		webEnvironment = SpringApplicationTest.WebEnvironment.RANDOM_PORT
-)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PersonControllerTests {
 	
 	@MockBean
