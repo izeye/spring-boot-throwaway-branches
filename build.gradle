@@ -37,16 +37,14 @@ dependencies {
 
     compile("org.hsqldb:hsqldb")
 
-    compile("org.mybatis:mybatis:3.3.1")
-    compile("org.mybatis:mybatis-spring:1.2.4")
+    compile("org.mybatis:mybatis:$mybatisVersion")
+    compile("org.mybatis:mybatis-spring:$mybatisSpringVersion")
 
-    // To run with 1.3.3.RELEASE
-    provided("org.projectlombok:lombok:1.16.6")
-//    provided("org.projectlombok:lombok")
+    provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    gradleVersion = '2.12'
 }
