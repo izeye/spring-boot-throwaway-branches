@@ -9,14 +9,10 @@ import javax.persistence.Id;
 /**
  * Created by izeye on 16. 3. 10..
  */
-@Entity
-@Data
-@AllArgsConstructor
-public class AggregatedGroup {
+public interface AggregatedGroup {
 	
-	@Id
-	private Long id;
+	long getId();
 	
-	private String name;
+	String getName();
 	
 }
