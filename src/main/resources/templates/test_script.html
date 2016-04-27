@@ -1,1 +1,6 @@
 <script th:src="${url}" type="text/javascript"></script>
+        
+<script th:inline="javascript">
+    var url = /*[[${url}]]*/ 'http://localhost';
+    console.log(url);
+</script>
