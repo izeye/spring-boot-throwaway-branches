@@ -36,6 +36,9 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
+    
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    compile("com.google.code.gson:gson")
 
     provided("org.projectlombok:lombok")
 
