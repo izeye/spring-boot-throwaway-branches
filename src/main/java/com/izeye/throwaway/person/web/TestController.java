@@ -24,11 +24,14 @@ public class TestController {
 
 		Map<String, String> headers = extractHeaders(request);
 
+		String ipAddress = request.getRemoteAddr();
+
 		Map<String, Object> response = new HashMap<>();
 		response.put("requestURL", requestURL.toString());
 		response.put("requestURI", requestURI);
 		response.put("queryString", queryString);
 		response.put("headers", headers);
+		response.put("ipAddress", ipAddress);
 		return response;
 	}
 
