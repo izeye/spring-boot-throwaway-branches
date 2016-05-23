@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,9 +27,14 @@ import static org.hamcrest.core.IsNull.notNullValue;
  * Created by izeye on 15. 10. 1..
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
-@WebIntegrationTest(randomPort = true)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PersonControllerTests {
+	
+	@Value("${security.user.name}")
+	String username;
+	
+	@Value("${security.user.password}")
+	String password;
 	
 	@Value("${local.server.port}")
 	int port;
@@ -36,18 +42,20 @@ public class PersonControllerTests {
 	@Autowired
 	ObjectMapper objectMapper;
 
-	RestTemplate restTemplate;
+	TestRestTemplate restTemplate;
 	
 	@Before
 	public void setUp() {
-		this.restTemplate = new RestTemplate();
-		for (HttpMessageConverter<?> messageConverter : this.restTemplate.getMessageConverters()) {
+		TestRestTemplate testRestTemplate = new TestRestTemplate(this.username, this.password);
+		RestTemplate restTemplate = testRestTemplate.getRestTemplate();
+		for (HttpMessageConverter<?> messageConverter : restTemplate.getMessageConverters()) {
 			if (messageConverter instanceof MappingJackson2HttpMessageConverter) {
 				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter
 						= (MappingJackson2HttpMessageConverter) messageConverter;
 				mappingJackson2HttpMessageConverter.setObjectMapper(this.objectMapper);
 			}
 		}
+		this.restTemplate = testRestTemplate;
 	}
 	
 	@Test

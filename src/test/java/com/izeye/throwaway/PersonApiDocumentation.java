@@ -3,6 +3,7 @@ package com.izeye.throwaway;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,11 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.snippet.Attributes.key;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,13 +27,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs("build/generated-snippets")
 public class PersonApiDocumentation {
+
+	@Value("${security.user.name}")
+	String username;
+
+	@Value("${security.user.password}")
+	String password;
 	
 	@Autowired
 	MockMvc mockMvc;
 	
 	@Test
 	public void documentPersons() throws Exception {
-		this.mockMvc.perform(get("/persons").accept(MediaType.APPLICATION_JSON))
+		this.mockMvc.perform(get("/persons")
+				.with(user(this.username).password(this.password))
+				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andDo(document("persons",
 						responseFields(
