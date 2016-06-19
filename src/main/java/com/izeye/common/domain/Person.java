@@ -1,4 +1,4 @@
-package com.izeye.throwaway;
+package com.izeye.common.domain;
 
 import lombok.Data;
 

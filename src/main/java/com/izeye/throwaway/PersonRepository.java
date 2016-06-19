@@ -1,5 +1,6 @@
 package com.izeye.throwaway;
 
+import com.izeye.common.domain.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

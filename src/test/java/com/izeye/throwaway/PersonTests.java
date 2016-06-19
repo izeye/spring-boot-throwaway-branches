@@ -1,5 +1,6 @@
 package com.izeye.throwaway;
 
+import com.izeye.common.domain.Person;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
