@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +56,8 @@ public class PersonControllerTests {
 	}
 
 	private void setUpRestTemplate() {
-		for (HttpMessageConverter<?> messageConverter : this.restTemplate.getMessageConverters()) {
+		RestTemplate innerRestTemplate = this.restTemplate.getRestTemplate();
+		for (HttpMessageConverter<?> messageConverter : innerRestTemplate.getMessageConverters()) {
 			if (messageConverter instanceof MappingJackson2HttpMessageConverter) {
 				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter
 						= (MappingJackson2HttpMessageConverter) messageConverter;
