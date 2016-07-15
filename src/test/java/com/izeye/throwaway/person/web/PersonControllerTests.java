@@ -67,13 +67,13 @@ public class PersonControllerTests {
 	}
 
 	@Test
-	public void testGetAllWithStringResponse() {
+	public void testFindAllWithStringResponse() {
 		String response = this.restTemplate.getForObject("/persons", String.class);
 		System.out.println(response);
 	}
 
 	@Test
-	public void testGetAllWithTypedResponse() {
+	public void testFindAllWithTypedResponse() {
 		ResponseEntity<List<Person>> response = this.restTemplate.exchange(
 				"/persons", HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Person>>() {});
@@ -90,11 +90,11 @@ public class PersonControllerTests {
 	}
 	
 	@Test
-	public void testGetByFirstName() {
+	public void testFindByFirstName() {
 		String firstName = "John";
 		
 		Person person = this.restTemplate.getForObject(
-				"/persons/{firstName}", Person.class, firstName);
+				"/persons/search?firstName={firstName}", Person.class, firstName);
 		System.out.println(person);
 		assertThat(person.getFirstName()).isEqualTo(firstName);
 	}
