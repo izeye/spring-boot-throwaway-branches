@@ -16,4 +16,14 @@ public class AppConfig {
 		return new DefaultPersonServiceConsumer();
 	}
 	
+	@Bean
+	public SingletonObjectFactoryBean singletonObject() {
+		return new SingletonObjectFactoryBean();
+	}
+	
+	@Bean
+	public PrototypeObjectFactoryBean prototypeObject() {
+		return new PrototypeObjectFactoryBean();
+	}
+	
 }
