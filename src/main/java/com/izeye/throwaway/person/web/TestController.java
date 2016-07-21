@@ -1,6 +1,7 @@
 package com.izeye.throwaway.person.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +34,11 @@ public class TestController {
 		response.put("headers", headers);
 		response.put("ipAddress", ipAddress);
 		return response;
+	}
+	
+	@GetMapping("/headers/userAgent")
+	public String getUserAgent(@RequestHeader("User-Agent") String userAgent) {
+		return userAgent;
 	}
 
 	private Map<String, String> extractHeaders(HttpServletRequest request) {
