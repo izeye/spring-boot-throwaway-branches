@@ -43,5 +43,8 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.0'
+    // NOTE:
+    // Can't use Gradle 3.0 yet
+    // because my IntelliJ still uses Java 6 but Gradle 3.0 requires Java 7.
+    gradleVersion = '2.14.1'
 }
