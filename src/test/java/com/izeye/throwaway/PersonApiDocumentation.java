@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PersonApiDocumentation {
 	
 	@Autowired
-	MockMvc mockMvc;
+	private MockMvc mockMvc;
 	
 	@Test
 	public void documentPersons() throws Exception {

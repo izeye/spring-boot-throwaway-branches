@@ -1,20 +1,14 @@
 package com.izeye.throwaway;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -25,44 +19,25 @@ import static org.hamcrest.core.IsNull.notNullValue;
 /**
  * Created by izeye on 15. 10. 1..
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
-@WebIntegrationTest(randomPort = true)
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PersonControllerTests {
 	
-	@Value("${local.server.port}")
-	int port;
-	
 	@Autowired
-	ObjectMapper objectMapper;
-
-	RestTemplate restTemplate;
-	
-	@Before
-	public void setUp() {
-		this.restTemplate = new RestTemplate();
-		for (HttpMessageConverter<?> messageConverter : this.restTemplate.getMessageConverters()) {
-			if (messageConverter instanceof MappingJackson2HttpMessageConverter) {
-				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter
-						= (MappingJackson2HttpMessageConverter) messageConverter;
-				mappingJackson2HttpMessageConverter.setObjectMapper(this.objectMapper);
-			}
-		}
-	}
+	private TestRestTemplate restTemplate;
 	
 	@Test
 	public void testGetAllWithStringResponse() {
-		String url = "http://localhost:{port}/persons";
-		String response = this.restTemplate.getForObject(url, String.class, this.port);
+		String url = "/persons";
+		String response = this.restTemplate.getForObject(url, String.class);
 		System.out.println(response);
 	}
 
 	@Test
 	public void testGetAllWithTypedResponse() {
-		String url = "http://localhost:{port}/persons";
+		String url = "/persons";
 		ResponseEntity<List<Person>> response = this.restTemplate.exchange(
-				url, HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<Person>>() {}, this.port);
+				url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Person>>() {});
 		List<Person> persons = response.getBody();
 		System.out.println(persons);
 		assertThat(persons.size(), is(1));
