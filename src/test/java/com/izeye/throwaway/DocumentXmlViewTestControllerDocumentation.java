@@ -5,6 +5,7 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -18,29 +19,40 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Created by izeye on 15. 10. 26..
+ * Documentation for {@link DocumentXmlViewTestController}.
+ *
+ * @author Johnny Lim
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs("build/generated-snippets")
-public class PersonApiDocumentation {
-	
+public class DocumentXmlViewTestControllerDocumentation {
+
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@Test
 	public void documentPersons() throws Exception {
-		this.mockMvc.perform(get("/persons").accept(MediaType.APPLICATION_JSON))
+		this.mockMvc.perform(get("/test/xml/persons").accept(MediaType.APPLICATION_XML))
 				.andExpect(status().isOk())
-				.andDo(document("persons",
+				.andDo(document("persons-xml",
 						responseFields(
-								fieldWithPath("[].id").description("ID"),
-								fieldWithPath("[].name.first_name").description("First name"),
-								fieldWithPath("[].name.last_name").description("Last name"),
-								fieldWithPath("[].age").description("Age"),
-								fieldWithPath("[].created_time").description("Created time")
+								fieldWithPath("persons")
+										.description("Persons").type(JsonFieldType.ARRAY),
+								fieldWithPath("persons/person")
+										.description("Person").type(JsonFieldType.OBJECT),
+								fieldWithPath("persons/person/id")
+										.description("ID for person").type(JsonFieldType.NUMBER),
+								fieldWithPath("persons/person/personName")
+										.description("Name for person").type(JsonFieldType.OBJECT),
+								fieldWithPath("persons/person/personName/firstName")
+										.description("First name for person").type(JsonFieldType.STRING),
+								fieldWithPath("persons/person/personName/lastName")
+										.description("Last name for person").type(JsonFieldType.STRING),
+								fieldWithPath("persons/person/age")
+										.description("Age for person").type(JsonFieldType.NUMBER)
 						)));
 	}
-	
+
 }

@@ -50,11 +50,13 @@ jar {
 }
 
 repositories {
-    mavenLocal()
     jcenter()
     maven { url "http://repo.spring.io/libs-release" }
     maven { url "http://repo.spring.io/libs-milestone" }
     maven { url "http://repo.spring.io/snapshot" }
+
+    // To see sources, local Maven repository should be bottom. But why?
+    mavenLocal()
 }
 
 dependencies {

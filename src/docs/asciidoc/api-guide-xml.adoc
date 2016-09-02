@@ -1,0 +1,4 @@
+include::{snippets}/persons-xml/curl-request.adoc[]
+include::{snippets}/persons-xml/http-request.adoc[]
+include::{snippets}/persons-xml/http-response.adoc[]
+include::{snippets}/persons-xml/response-fields.adoc[]
