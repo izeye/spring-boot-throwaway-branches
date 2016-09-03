@@ -23,7 +23,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class)
+@SpringBootTest(
+		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+		classes = Application.class
+)
 public class RestTemplateTests {
 
 	@LocalServerPort
