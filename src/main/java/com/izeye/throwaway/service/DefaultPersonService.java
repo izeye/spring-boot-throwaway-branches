@@ -12,10 +12,9 @@ public class DefaultPersonService implements PersonService {
 	@Value("${message}")
 	private String message;
 
-	private final String finalMessage = message;
-
-	public String getFinalMessage() {
-		return finalMessage;
+	@Override
+	public String getMessage() {
+		return this.message;
 	}
-	
+
 }
