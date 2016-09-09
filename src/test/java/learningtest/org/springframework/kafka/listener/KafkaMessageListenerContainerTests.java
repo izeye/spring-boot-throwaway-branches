@@ -1,6 +1,5 @@
 package learningtest.org.springframework.kafka.listener;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
@@ -26,18 +25,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by izeye on 16. 5. 16..
  */
-@Slf4j
 public class KafkaMessageListenerContainerTests {
 	
-	String bootstrapServers = "localhost:9092";
-	String topic = "my-topic";
+	private String bootstrapServers = "localhost:9092";
+	private String topic = "my-another-topic";
 	
 	@Test
 	public void test() {
 		KafkaMessageListenerContainer<Integer, String> container = createContainer();
 		final CountDownLatch latch = new CountDownLatch(4);
 		container.setMessageListener((MessageListener<Integer, String>) record -> {
-			log.info("Received: {}", record);
+			System.out.println("Received: " + record);
 			latch.countDown();
 		});
 		container.setBeanName("testContainer");
@@ -50,7 +48,7 @@ public class KafkaMessageListenerContainerTests {
 		}
 		
 		KafkaTemplate<Integer, String> template = createTemplate();
-		template.setDefaultTopic(topic);
+		template.setDefaultTopic(this.topic);
 		template.send(0, "foo");
 		template.send(2, "bar");
 		template.send(0, "baz");
@@ -80,7 +78,7 @@ public class KafkaMessageListenerContainerTests {
 
 	private Map<String, Object> createConsumerProperties() {
 		Map<String, Object> properties = new HashMap<>();
-		properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+		properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers);
 		properties.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
 		properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
 				IntegerDeserializer.class.getName());
@@ -91,7 +89,7 @@ public class KafkaMessageListenerContainerTests {
 
 	private Map<String, Object> createProducerProperties() {
 		Map<String, Object> properties = new HashMap<>();
-		properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+		properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers);
 		properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
 				IntegerSerializer.class.getName());
 		properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,

@@ -21,19 +21,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class KafkaConfigTests {
 	
 	@Autowired
-	MyKafkaListener myKafkaListener;
+	private MyKafkaListener myKafkaListener;
 	
 	@Autowired
-	KafkaTemplate<Integer, String> kafkaTemplate;
+	private KafkaTemplate<Integer, String> kafkaTemplate;
 	
 	@Test
 	public void test() {
 		CountDownLatch latch = new CountDownLatch(2);
-		myKafkaListener.setLatch(latch);
-		
-		kafkaTemplate.send("my-topic", 0, "Message with a parameter topic");
-		kafkaTemplate.send(0, "Message with the default topic");
-		kafkaTemplate.flush();
+		this.myKafkaListener.setLatch(latch);
+
+		this.kafkaTemplate.send("my-topic", 0, "Message with a parameter topic");
+		this.kafkaTemplate.send(0, "Message with the default topic");
+		this.kafkaTemplate.flush();
 
 		try {
 			assertThat(latch.await(60, TimeUnit.SECONDS)).isTrue();
