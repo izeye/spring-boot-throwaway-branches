@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
-import org.springframework.kafka.config.SimpleKafkaListenerContainerFactory;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -30,14 +30,14 @@ public class KafkaConfig {
 	private KafkaProperties kafkaProperties;
 	
 	@Bean
-	public SimpleKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
-		SimpleKafkaListenerContainerFactory<Integer, String> factory =
-				new SimpleKafkaListenerContainerFactory<>();
+	public ConcurrentKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
+		ConcurrentKafkaListenerContainerFactory<Integer, String> factory =
+				new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(consumerFactory());
 		
 		Long pollTimeout = this.kafkaProperties.getListener().getPollTimeout();
 		if (pollTimeout != null) {
-			factory.setPollTimeout(pollTimeout);
+			factory.getContainerProperties().setPollTimeout(pollTimeout);
 		}
 		return factory;
 	}

@@ -14,6 +14,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
 import org.springframework.kafka.listener.MessageListener;
+import org.springframework.kafka.listener.config.ContainerProperties;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class KafkaMessageListenerContainerTests {
 	public void test() {
 		KafkaMessageListenerContainer<Integer, String> container = createContainer();
 		final CountDownLatch latch = new CountDownLatch(4);
-		container.setMessageListener((MessageListener<Integer, String>) record -> {
+		container.setupMessageListener((MessageListener<Integer, String>) record -> {
 			System.out.println("Received: " + record);
 			latch.countDown();
 		});
@@ -49,10 +50,10 @@ public class KafkaMessageListenerContainerTests {
 		
 		KafkaTemplate<Integer, String> template = createTemplate();
 		template.setDefaultTopic(this.topic);
-		template.send(0, "foo");
-		template.send(2, "bar");
-		template.send(0, "baz");
-		template.send(2, "qux");
+		template.sendDefault(0, "foo");
+		template.sendDefault(2, "bar");
+		template.sendDefault(0, "baz");
+		template.sendDefault(2, "qux");
 		template.flush();
 		try {
 			assertThat(latch.await(60, TimeUnit.SECONDS)).isTrue();
@@ -66,7 +67,8 @@ public class KafkaMessageListenerContainerTests {
 		Map<String, Object> consumerProperties = createConsumerProperties();
 		ConsumerFactory<Integer, String> consumerFactory =
 				new DefaultKafkaConsumerFactory<>(consumerProperties);
-		return new KafkaMessageListenerContainer<Integer, String>(consumerFactory, this.topic);
+		ContainerProperties containerProperties = new ContainerProperties(this.topic);
+		return new KafkaMessageListenerContainer<>(consumerFactory, containerProperties);
 	}
 
 	private KafkaTemplate<Integer, String> createTemplate() {

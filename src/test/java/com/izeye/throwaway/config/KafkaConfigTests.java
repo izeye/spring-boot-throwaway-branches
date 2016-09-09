@@ -32,7 +32,7 @@ public class KafkaConfigTests {
 		this.myKafkaListener.setLatch(latch);
 
 		this.kafkaTemplate.send("my-topic", 0, "Message with a parameter topic");
-		this.kafkaTemplate.send(0, "Message with the default topic");
+		this.kafkaTemplate.sendDefault(0, "Message with the default topic");
 		this.kafkaTemplate.flush();
 
 		try {
