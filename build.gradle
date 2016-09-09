@@ -45,6 +45,7 @@ dependencies {
     provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework.kafka:spring-kafka-test:${springKafkaVersion}")
 }
 
 task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyReportTask) {
