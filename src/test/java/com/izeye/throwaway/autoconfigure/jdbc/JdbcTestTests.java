@@ -28,7 +28,8 @@ public class JdbcTestTests {
 	public void test() {
 		this.jdbcTemplate.execute("CREATE TABLE employee (id int, name varchar)");
 		this.jdbcTemplate.execute("INSERT INTO employee (id, name) VALUES (1, 'Johnny Lim')");
-		List<Map<String, Object>> employees = this.jdbcTemplate.queryForList("SELECT id, name FROM employee");
+		List<Map<String, Object>> employees =
+				this.jdbcTemplate.queryForList("SELECT id, name FROM employee");
 		assertThat(employees).hasSize(1);
 	}
 
