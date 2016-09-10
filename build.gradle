@@ -37,7 +37,7 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-jdbc")
 
-    runtime("com.h2database:h2")
+    compile("mysql:mysql-connector-java")
     
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("com.google.code.gson:gson")

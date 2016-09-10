@@ -28,7 +28,7 @@ public class ApplicationTests {
 		assertThat(this.dataSource).isInstanceOf(org.apache.tomcat.jdbc.pool.DataSource.class);
 		org.apache.tomcat.jdbc.pool.DataSource tomcatJdbcPoolDataSource =
 				(org.apache.tomcat.jdbc.pool.DataSource) this.dataSource;
-		assertThat(tomcatJdbcPoolDataSource.isTestOnBorrow()).isTrue();
+		assertThat(tomcatJdbcPoolDataSource.isTestOnBorrow()).isFalse();
 	}
 
 }
