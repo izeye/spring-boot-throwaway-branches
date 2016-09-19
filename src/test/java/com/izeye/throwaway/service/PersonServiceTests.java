@@ -9,20 +9,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by izeye on 16. 4. 1..
+ * Tests for {@link PersonService}.
+ *
+ * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PersonServiceTests {
 	
 	@Autowired
-	PersonService personService;
+	private PersonService personService;
 	
 	@Test
-	public void testGetFinalMessage() {
-		String finalMessage = ((DefaultPersonService) personService).getFinalMessage();
-		System.out.println(finalMessage);
-		assertThat(finalMessage).isNull();
+	public void testGetMessage() {
+		assertThat(this.personService.getMessage()).isEqualTo("Hello, world!");
 	}
 	
 }
