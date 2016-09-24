@@ -39,6 +39,8 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
 
+    compile("org.webjars:jquery:3.1.0")
+
     provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
