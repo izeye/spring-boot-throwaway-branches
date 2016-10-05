@@ -27,7 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 )
 public class RestTemplateBuilderTests {
 
-
 	@LocalServerPort
 	private int port;
 
@@ -46,7 +45,7 @@ public class RestTemplateBuilderTests {
 		String message = "Hello, world!";
 
 		String url = "http://localhost:" + this.port + "/echo?message={message}";
-		String echoed = restTemplate.getForObject(url, String.class, message);
+		String echoed = this.restTemplate.getForObject(url, String.class, message);
 		assertThat(echoed).isEqualTo(message);
 	}
 
