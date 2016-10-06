@@ -41,6 +41,11 @@ public class TestController {
 		return userAgent;
 	}
 
+	@GetMapping("/triggerOom")
+	public void triggerOom() {
+		throw new OutOfMemoryError();
+	}
+
 	private Map<String, String> extractHeaders(HttpServletRequest request) {
 		Enumeration<String> headerNames = request.getHeaderNames();
 		Map<String, String> headers = new HashMap<>();
