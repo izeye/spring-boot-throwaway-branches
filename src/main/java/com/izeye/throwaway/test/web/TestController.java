@@ -3,6 +3,7 @@ package com.izeye.throwaway.test.web;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,11 @@ public class TestController {
 	@GetMapping("/headers/userAgent")
 	public String getUserAgent(@RequestHeader("User-Agent") String userAgent) {
 		return userAgent;
+	}
+
+	@GetMapping("/print")
+	public void print(@RequestParam String value) {
+		System.out.println(value);
 	}
 
 	private Map<String, String> extractHeaders(HttpServletRequest request) {
