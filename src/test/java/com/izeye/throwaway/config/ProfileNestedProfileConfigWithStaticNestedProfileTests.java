@@ -15,14 +15,14 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests with {@code nested} nested profile for {@link ProfileNestedProfileConfig}.
+ * Tests with {@code static-nested} nested profile for {@link ProfileNestedProfileConfig}.
  *
  * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("nested")
-public class ProfileNestedProfileConfigWithNestedProfileTests {
+@ActiveProfiles("static-nested")
+public class ProfileNestedProfileConfigWithStaticNestedProfileTests {
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
@@ -31,15 +31,12 @@ public class ProfileNestedProfileConfigWithNestedProfileTests {
 	private ApplicationContext applicationContext;
 
 	@Test
-	public void testStringInProfileNestedProfileConfig() {
+	public void test() {
+		assertThat(this.applicationContext.getBean("integerInProfileNestedProfileConfig"))
+				.isEqualTo(Integer.MAX_VALUE);
+
 		this.thrown.expect(NoSuchBeanDefinitionException.class);
 		this.applicationContext.getBean("stringInProfileNestedProfileConfig");
-	}
-
-	@Test
-	public void testIntegerInProfileNestedProfileConfig() {
-		this.thrown.expect(NoSuchBeanDefinitionException.class);
-		this.applicationContext.getBean("integerInProfileNestedProfileConfig");
 	}
 
 }

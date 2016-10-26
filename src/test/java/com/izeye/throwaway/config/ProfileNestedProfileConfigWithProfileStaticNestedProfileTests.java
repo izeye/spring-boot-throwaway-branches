@@ -12,15 +12,15 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests with {@code test} profile and {@code nested} nested profile
+ * Tests with {@code test} profile and {@code static-nested} nested profile
  * for {@link ProfileNestedProfileConfig}.
  *
  * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles({ "test", "nested" })
-public class ProfileNestedProfileConfigWithProfileNestedProfileTests {
+@ActiveProfiles({ "test", "static-nested" })
+public class ProfileNestedProfileConfigWithProfileStaticNestedProfileTests {
 
 	@Autowired
 	private ApplicationContext applicationContext;

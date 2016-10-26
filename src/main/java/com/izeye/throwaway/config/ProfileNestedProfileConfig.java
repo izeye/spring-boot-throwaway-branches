@@ -21,7 +21,7 @@ public class ProfileNestedProfileConfig {
 
 	@Configuration
 	@Profile("nested")
-	public static class NestedConfiguration {
+	public class NestedConfiguration {
 
 		@Bean
 		public Integer integerInProfileNestedProfileConfig() {
@@ -29,4 +29,16 @@ public class ProfileNestedProfileConfig {
 		}
 
 	}
+
+	@Configuration
+	@Profile("static-nested")
+	public static class StaticNestedConfiguration {
+
+		@Bean
+		public Integer integerInProfileNestedProfileConfig() {
+			return Integer.MAX_VALUE;
+		}
+
+	}
+
 }
