@@ -2,6 +2,8 @@ package com.izeye.throwaway.config;
 
 import com.izeye.throwaway.service.DefaultPersonServiceConsumer;
 import com.izeye.throwaway.service.PersonServiceConsumer;
+import com.izeye.throwaway.service.SomeService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,6 +26,11 @@ public class AppConfig {
 	@Bean
 	public PrototypeObjectFactoryBean prototypeObject() {
 		return new PrototypeObjectFactoryBean();
+	}
+
+	@Bean
+	public SomeService someService() {
+		return new SomeService();
 	}
 	
 }
