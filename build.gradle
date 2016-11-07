@@ -35,7 +35,11 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    compile("org.springframework.boot:spring-boot-starter-jdbc") {
+        exclude module: "tomcat-jdbc"
+    }
+    compile("com.zaxxer:HikariCP")
+
     compile("org.springframework.boot:spring-boot-starter-web")
 
     compile("mysql:mysql-connector-java")

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -27,20 +28,14 @@ public class ApplicationTests {
 	private DataSource dataSource;
 
 	@Test
-	public void testDataSource() {
-		assertThat(this.dataSource).isInstanceOf(org.apache.tomcat.jdbc.pool.DataSource.class);
-		org.apache.tomcat.jdbc.pool.DataSource tomcatJdbcPoolDataSource =
-				(org.apache.tomcat.jdbc.pool.DataSource) this.dataSource;
-		assertThat(tomcatJdbcPoolDataSource.isTestOnBorrow()).isFalse();
-	}
+	public void testHikariJdbcPoolIsNotCreated() throws SQLException {
+		assertThat(this.dataSource).isInstanceOf(HikariDataSource.class);
 
-	@Test
-	public void testTomcatJdbcPoolIsNotCreated() throws SQLException {
 		DirectFieldAccessor dfa = new DirectFieldAccessor(this.dataSource);
 		assertThat(dfa.getPropertyValue("pool")).isNull();
 
-		// Create pool explicitly.
-		((org.apache.tomcat.jdbc.pool.DataSource) this.dataSource).createPool();
+		// Create pool via getConnection().
+		this.dataSource.getConnection();
 		assertThat(dfa.getPropertyValue("pool")).isNotNull();
 	}
 
