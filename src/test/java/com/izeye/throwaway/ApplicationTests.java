@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.zaxxer.hikari.HikariDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,15 +28,15 @@ public class ApplicationTests {
 	private DataSource dataSource;
 
 	@Test
-	public void testHikariJdbcPoolIsNotCreated() throws SQLException {
-		assertThat(this.dataSource).isInstanceOf(HikariDataSource.class);
+	public void testDbcp2JdbcPoolIsNotCreated() throws SQLException {
+		assertThat(this.dataSource).isInstanceOf(BasicDataSource.class);
 
 		DirectFieldAccessor dfa = new DirectFieldAccessor(this.dataSource);
-		assertThat(dfa.getPropertyValue("pool")).isNull();
+		assertThat(dfa.getPropertyValue("connectionPool")).isNull();
 
 		// Create pool via getConnection().
 		this.dataSource.getConnection();
-		assertThat(dfa.getPropertyValue("pool")).isNotNull();
+		assertThat(dfa.getPropertyValue("connectionPool")).isNotNull();
 	}
 
 }
