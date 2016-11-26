@@ -11,16 +11,14 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
-        classpath("com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 apply plugin: 'propdeps'
-apply plugin: 'com.github.ben-manes.versions'
 
 sourceCompatibility = 1.8
 
@@ -36,17 +34,10 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
-    
-    compile("com.fasterxml.jackson.core:jackson-databind")
-    compile("com.google.code.gson:gson")
 
     provided("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
-}
-
-task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyReportTask) {
-    configurations = project.buildscript.configurations
 }
 
 task wrapper(type: Wrapper) {
