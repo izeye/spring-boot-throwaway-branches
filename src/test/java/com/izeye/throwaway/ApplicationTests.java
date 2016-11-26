@@ -27,21 +27,11 @@ public class ApplicationTests {
 	private DataSource dataSource;
 
 	@Test
-	public void testDataSource() {
-		assertThat(this.dataSource).isInstanceOf(org.apache.tomcat.jdbc.pool.DataSource.class);
-		org.apache.tomcat.jdbc.pool.DataSource tomcatJdbcPoolDataSource =
-				(org.apache.tomcat.jdbc.pool.DataSource) this.dataSource;
-		assertThat(tomcatJdbcPoolDataSource.isTestOnBorrow()).isFalse();
-	}
+	public void testDataSource() throws SQLException, InterruptedException {
+		// Trigger pool creation.
+		this.dataSource.getConnection();
 
-	@Test
-	public void testTomcatJdbcPoolIsNotCreated() throws SQLException {
-		DirectFieldAccessor dfa = new DirectFieldAccessor(this.dataSource);
-		assertThat(dfa.getPropertyValue("pool")).isNull();
-
-		// Create pool explicitly.
-		((org.apache.tomcat.jdbc.pool.DataSource) this.dataSource).createPool();
-		assertThat(dfa.getPropertyValue("pool")).isNotNull();
+		Thread.sleep(5000);
 	}
 
 }
