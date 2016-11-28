@@ -47,6 +47,11 @@ public class TestController {
 		throw new OutOfMemoryError();
 	}
 
+	@GetMapping("/triggerException")
+	public void triggerException() {
+		throw new RuntimeException("Intentionally triggered.");
+	}
+
 	@GetMapping("/print")
 	public void print(@RequestParam String value) {
 		System.out.println(value);
