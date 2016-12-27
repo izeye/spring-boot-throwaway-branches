@@ -22,6 +22,7 @@ public class ResolvableTypeTests {
 
 		private final Class<T> type;
 
+		@SuppressWarnings("unchecked")
 		GenericClass() {
 			this.type = (Class<T>) ResolvableType
 					.forClass(GenericClass.class, getClass()).resolveGeneric();
