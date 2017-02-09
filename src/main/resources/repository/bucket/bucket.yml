@@ -1,0 +1,6 @@
+bucketTests:
+  - id: 1
+    name: Bucket test 1
+    targets:
+      - a
+      - b
