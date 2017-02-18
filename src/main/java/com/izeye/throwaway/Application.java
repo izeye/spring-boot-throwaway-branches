@@ -2,8 +2,8 @@ package com.izeye.throwaway;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 import com.izeye.throwaway.repository.BucketTestRepository;
 
@@ -15,10 +15,6 @@ import com.izeye.throwaway.repository.BucketTestRepository;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	static {
-		System.setProperty("spring.config.location", "classpath:/repository/bucket/bucket.yml");
-	}
-
 	@Autowired
 	private BucketTestRepository bucketTestRepository;
 
@@ -28,7 +24,9 @@ public class Application implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		new SpringApplicationBuilder(Application.class)
+				.properties("spring.config.location=classpath:/repository/bucket/bucket.yml")
+				.run(args);
 	}
 
 }
