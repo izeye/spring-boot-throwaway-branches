@@ -16,7 +16,8 @@ public class BucketTestConfig {
 
 	@Bean
 	// FIXME: 'locations' has been deprecated, so it should be replaced with what?
-	@ConfigurationProperties(locations = "classpath:/repository/bucket/bucket.yml")
+//	@ConfigurationProperties(locations = "classpath:/repository/bucket/bucket.yml")
+	@ConfigurationProperties
 	public YamlBucketTestRepository bucketTestRepository() {
 		return new YamlBucketTestRepository();
 	}

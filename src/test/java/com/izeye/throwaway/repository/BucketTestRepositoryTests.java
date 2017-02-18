@@ -18,6 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class BucketTestRepositoryTests {
 
+	static {
+		System.setProperty("spring.config.location", "classpath:/repository/bucket/bucket.yml");
+	}
+
 	@Autowired
 	private BucketTestRepository bucketTestRepository;
 
