@@ -16,5 +16,9 @@ public class Person {
 	private int age;
 	
 	private Date createdTime;
+
+	public String getLastName() {
+		return this.lastName + " from getter";
+	}
 	
 }
