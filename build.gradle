@@ -49,5 +49,5 @@ task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyRe
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.14.1'
+    gradleVersion = '3.4.1'
 }
