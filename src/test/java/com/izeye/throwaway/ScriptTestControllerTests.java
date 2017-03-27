@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,6 +32,8 @@ public class ScriptTestControllerTests {
                 .andExpect(status().isOk()).andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         System.out.println(content);
+        assertThat(content)
+                .contains("var message = 'http://localhost:-1/js/test.js' + \"&param2=\" + param2;");
     }
 
 }
