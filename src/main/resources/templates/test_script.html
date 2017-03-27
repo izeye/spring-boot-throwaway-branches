@@ -4,3 +4,11 @@
     var url = /*[[${url}]]*/ 'http://localhost';
     console.log(url);
 </script>
+
+<script th:inline="javascript">
+    var url = "http://www.izeye.com/query?param1=1";
+    var param2 = "2";
+
+    var message = url + "&param2=" + param2;
+    console.log(message);
+</script>
