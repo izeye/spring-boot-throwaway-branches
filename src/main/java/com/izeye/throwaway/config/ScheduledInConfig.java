@@ -30,7 +30,7 @@ public class ScheduledInConfig {
 	@Autowired
 	private Person person;
 
-	@Scheduled(cron = "0 * * * * ?")
+	@Scheduled(cron = "* * * * * ?")
 	public void doScheduledJob() {
 		System.out.println(new Date() + ": " + this.person);
 	}
