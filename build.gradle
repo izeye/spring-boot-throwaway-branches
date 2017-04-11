@@ -37,6 +37,10 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
 
+    compile("com.github.jknack:handlebars:$handlebarsVersion")
+    compile("com.github.jknack:handlebars-jackson2:$handlebarsVersion")
+    compile("com.github.jknack:handlebars-guava-cache:$handlebarsVersion")
+
     compileOnly("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
