@@ -35,9 +35,6 @@ public class ElasticsearchConfigurationTests {
 		}
 	}
 
-	// FIXME:
-	// Jackson 2.8.7 doesn't work. Downgrading to Jackson 2.6.6 works.
-	@Ignore
 	@Test
 	public void testIndex() {
 		String json = "{firstName: \"Johnny\", lastName: \"Lim\", age: 20}";
