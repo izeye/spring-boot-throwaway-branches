@@ -2,7 +2,6 @@ package com.izeye.throwaway.support.elasticsearch;
 
 import lombok.Data;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.springframework.beans.factory.DisposableBean;
@@ -11,6 +10,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Set;
 
 /**
@@ -54,7 +55,7 @@ public class TransportClientFactoryBean implements FactoryBean<TransportClient>,
 	}
 
 	private void createTransportClient() {
-		this.client = new TransportClient(settings());
+		this.client = TransportClient.builder().settings(settings()).build();
 		Assert.hasText(clusterNodes, "clusterNodes must have a value.");
 		Set<String> nodes = StringUtils.commaDelimitedListToSet(clusterNodes);
 		for (String node : nodes) {
@@ -62,12 +63,18 @@ public class TransportClientFactoryBean implements FactoryBean<TransportClient>,
 			Assert.isTrue(index >= 0, "':' is missing in a cluster node value: " + node);
 			String hostname = node.substring(0, index);
 			int port = Integer.parseInt(node.substring(index + 1));
-			this.client.addTransportAddress(new InetSocketTransportAddress(hostname, port));
+			try {
+				this.client.addTransportAddress(new InetSocketTransportAddress(
+						InetAddress.getByName(hostname), port));
+			}
+			catch (UnknownHostException ex) {
+				throw new RuntimeException(ex);
+			}
 		}
 	}
 	
 	private Settings settings() {
-		return ImmutableSettings.settingsBuilder()
+		return Settings.settingsBuilder()
 				.put("cluster.name", clusterName).build();
 	}
 	
