@@ -10,15 +10,13 @@ buildscript {
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'propdeps'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 
@@ -39,11 +37,11 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 
-    provided("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+    gradleVersion = '3.5'
 }
