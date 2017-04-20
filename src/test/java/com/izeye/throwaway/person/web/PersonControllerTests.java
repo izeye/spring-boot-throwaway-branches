@@ -1,6 +1,5 @@
 package com.izeye.throwaway.person.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izeye.throwaway.person.domain.Person;
 import com.izeye.throwaway.person.domain.TestDomainFactory;
 import com.izeye.throwaway.person.service.PersonService;
@@ -14,8 +13,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collections;
@@ -25,7 +22,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 /**
- * Created by izeye on 15. 10. 1..
+ * Tests for {@link PersonController}.
+ *
+ * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -36,14 +35,9 @@ public class PersonControllerTests {
 	
 	@Autowired
 	TestRestTemplate restTemplate;
-
-	@Autowired
-	ObjectMapper objectMapper;
 	
 	@Before
 	public void setUp() {
-		setUpRestTemplate();
-
 		given(this.personService.findAll())
 				.willReturn(Collections.singletonList(TestDomainFactory.createPerson()));
 
@@ -52,16 +46,6 @@ public class PersonControllerTests {
 		person.setFirstName(firstName);
 		given(this.personService.findByFirstName(firstName))
 				.willReturn(person);
-	}
-
-	private void setUpRestTemplate() {
-		for (HttpMessageConverter<?> messageConverter : this.restTemplate.getMessageConverters()) {
-			if (messageConverter instanceof MappingJackson2HttpMessageConverter) {
-				MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter
-						= (MappingJackson2HttpMessageConverter) messageConverter;
-				mappingJackson2HttpMessageConverter.setObjectMapper(this.objectMapper);
-			}
-		}
 	}
 
 	@Test
