@@ -1,6 +1,7 @@
 package com.izeye.throwaway;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,6 +48,12 @@ public class TestController {
 	@GetMapping("/error")
 	public void error() {
 		throw new RuntimeException("Expected error.");
+	}
+
+	@GetMapping("/test-null-field")
+	public String testNullField(Model model) {
+		model.addAttribute("person", new Person());
+		return "test_null_field";
 	}
 	
 }
