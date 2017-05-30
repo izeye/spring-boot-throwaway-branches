@@ -33,4 +33,11 @@ public class TestControllerTests {
 				.andExpect(content().string(containsString("First name: \"\"")));
 	}
 
+	@Test
+	public void testNullModelAndView() throws Exception {
+		this.mockMvc.perform(get("/test/null-model-and-view"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(""));
+	}
+
 }
