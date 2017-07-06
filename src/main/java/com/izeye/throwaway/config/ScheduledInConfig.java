@@ -33,6 +33,8 @@ public class ScheduledInConfig {
 	@Scheduled(cron = "* * * * * ?")
 	public void doScheduledJob() {
 		System.out.println(new Date() + ": " + this.person);
+
+		throw new RuntimeException("Expected error.");
 	}
 
 }
