@@ -26,11 +26,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 /**
- * Created by izeye on 15. 10. 1..
+ * Integration tests for {@link PersonController}.
+ *
+ * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PersonControllerTests {
+public class PersonControllerIntegrationTests {
 	
 	@MockBean
 	PersonService personService;
