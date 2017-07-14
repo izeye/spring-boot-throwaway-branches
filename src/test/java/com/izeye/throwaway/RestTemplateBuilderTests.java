@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -38,7 +39,10 @@ public class RestTemplateBuilderTests {
 	public void customize(RestTemplateBuilder restTemplateBuilder) {
 		CloseableHttpClient httpClient = HttpClientBuilder.create()
 				.setMaxConnTotal(100).setMaxConnPerRoute(50).build();
+
 		HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+		requestFactory.setConnectionRequestTimeout(1000);
+
 		this.customRestTemplate = restTemplateBuilder.requestFactory(requestFactory).build();
 	}
 
@@ -46,25 +50,43 @@ public class RestTemplateBuilderTests {
 	public void testDefaultRestTemplate() {
 		int expectedMaxTotal = 10;
 		int expectedDefaultMaxPerRoute = 5;
-		assertConnectionPoolSettings(this.defaultRestTemplate, expectedMaxTotal, expectedDefaultMaxPerRoute);
+		Integer expectedConnectionRequestTimeout = null;
+		assertConnectionPoolSettings(
+				this.defaultRestTemplate, expectedMaxTotal, expectedDefaultMaxPerRoute,
+				expectedConnectionRequestTimeout);
 	}
 
 	@Test
 	public void testCustomRestTemplate() {
 		int expectedMaxTotal = 100;
 		int expectedDefaultMaxPerRoute = 50;
-		assertConnectionPoolSettings(this.customRestTemplate, expectedMaxTotal, expectedDefaultMaxPerRoute);
+		int expectedConnectionRequestTimeout = 1000;
+		assertConnectionPoolSettings(
+				this.customRestTemplate, expectedMaxTotal, expectedDefaultMaxPerRoute,
+				expectedConnectionRequestTimeout);
 	}
 
 	private void assertConnectionPoolSettings(
-			RestTemplate restTemplate, int expectedMaxTotal, int expectedDefaultMaxPerRoute) {
+			RestTemplate restTemplate, int expectedMaxTotal, int expectedDefaultMaxPerRoute,
+			Integer expectedConnectionRequestTimeout) {
 		DirectFieldAccessor dfa = new DirectFieldAccessor(restTemplate);
+
 		HttpComponentsClientHttpRequestFactory requestFactory = (HttpComponentsClientHttpRequestFactory) dfa.getPropertyValue("requestFactory");
+
 		HttpClient httpClient = requestFactory.getHttpClient();
 		dfa = new DirectFieldAccessor(httpClient);
 		PoolingHttpClientConnectionManager connectionManager = (PoolingHttpClientConnectionManager) dfa.getPropertyValue("connManager");
 		assertThat(connectionManager.getMaxTotal()).isEqualTo(expectedMaxTotal);
 		assertThat(connectionManager.getDefaultMaxPerRoute()).isEqualTo(expectedDefaultMaxPerRoute);
+
+		dfa = new DirectFieldAccessor(requestFactory);
+		RequestConfig requestConfig = (RequestConfig) dfa.getPropertyValue("requestConfig");
+		if (expectedConnectionRequestTimeout == null) {
+			assertThat(requestConfig).isNull();
+		}
+		else {
+			assertThat(requestConfig.getConnectionRequestTimeout()).isEqualTo(expectedConnectionRequestTimeout);
+		}
 	}
 
 }
