@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.search.SearchHit;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +51,23 @@ public class ElasticsearchClientTests {
 		for (SearchHit hit : response.getHits().getHits()) {
 			System.out.println(hit.getSource());
 		}
+	}
+
+	@Test
+	public void testPrepareSearchMatchAllWithScroll() {
+		int i = 1;
+
+		TimeValue keepAlive = new TimeValue(60000);
+
+		SearchResponse response = this.client.prepareSearch("persons").setScroll(keepAlive).setQuery(matchAllQuery()).setSize(2).get();
+		do {
+			System.out.println("Scroll #: " + i++);
+			for (SearchHit hit : response.getHits().getHits()) {
+				System.out.println(hit.getSource());
+			}
+
+			response = client.prepareSearchScroll(response.getScrollId()).setScroll(keepAlive).get();
+		} while (response.getHits().getHits().length > 0);
 	}
 
 	@Test
