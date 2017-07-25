@@ -61,5 +61,12 @@ public class TestController {
 	public ModelAndView testNullModelAndView() {
 		return null;
 	}
+
+	@GetMapping("/test-switch")
+	public String testSwitch(Model model) {
+		model.addAttribute("firstName", null);
+		model.addAttribute("lastName", "null");
+		return "test_switch";
+	}
 	
 }

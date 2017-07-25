@@ -10,7 +10,6 @@ buildscript {
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
     }
 }
 
@@ -18,7 +17,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'propdeps'
+apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 
@@ -33,15 +32,16 @@ repositories {
 }
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     compile("net.sourceforge.nekohtml:nekohtml")
 
-    provided("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.14'
+    gradleVersion = '4.0.1'
 }
