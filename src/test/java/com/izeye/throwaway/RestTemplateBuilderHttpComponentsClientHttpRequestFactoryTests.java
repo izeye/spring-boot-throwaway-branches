@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class RestTemplateBuilderTests {
+public class RestTemplateBuilderHttpComponentsClientHttpRequestFactoryTests {
 
 	private RestTemplate defaultRestTemplate;
 	private RestTemplate customRestTemplate;
