@@ -61,7 +61,7 @@ public class RestTemplateBuilderClientHttpRequestFactoryTests {
 	public void customizeHttpComponentsRestTemplateWithNoConnectionReuseStrategy(
 			RestTemplateBuilder restTemplateBuilder) {
 		CloseableHttpClient httpClient = HttpClientBuilder.create()
-				.setConnectionReuseStrategy(new NoConnectionReuseStrategy()).build();
+				.setConnectionReuseStrategy(NoConnectionReuseStrategy.INSTANCE).build();
 		ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
 
 		this.httpComponentsRestTemplateWithNoConnectionReuseStrategy = restTemplateBuilder
