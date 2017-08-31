@@ -9,5 +9,5 @@ $(document).ready(function () {
     $('#created_time').append(data.created_time);
     console.log(status);
     console.log(jqxhr);
-  })
+  });
 });

@@ -19,7 +19,7 @@ public class WebConfig {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/persons/{id}").allowedOrigins("http://localhost:28080");
+				registry.addMapping("/persons/{id}").allowedOrigins("http://localhost:8080");
 			}
 		};
 	}
