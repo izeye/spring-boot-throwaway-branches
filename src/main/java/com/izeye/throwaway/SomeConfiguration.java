@@ -19,6 +19,7 @@ public class SomeConfiguration {
 	@PostConstruct
 	public void init() {
 		System.out.println(this.someEnvironmentVariable);
+		System.out.println(System.getenv("SOME_ENVIRONMENT_VARIABLE"));
 		System.out.println(System.getProperty("SOME_ENVIRONMENT_VARIABLE"));
 	}
 
