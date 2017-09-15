@@ -25,4 +25,9 @@ public class HomeController {
 		return request.toString();
 	}
 
+	@GetMapping("/throwException")
+	public String throwException() {
+		throw new RuntimeException("Expected.");
+	}
+
 }
