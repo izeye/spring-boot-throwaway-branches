@@ -59,7 +59,7 @@ public class TransportClientFactoryBean implements FactoryBean<TransportClient>,
 	}
 
 	private void createTransportClient() {
-		this.client = new PreBuiltTransportClient(settings());;
+		this.client = new PreBuiltTransportClient(settings());
 		Assert.hasText(this.clusterNodes, "clusterNodes must have a value.");
 		Set<String> nodes = StringUtils.commaDelimitedListToSet(this.clusterNodes);
 		for (String node : nodes) {
