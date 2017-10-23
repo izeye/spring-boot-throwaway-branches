@@ -4,6 +4,8 @@ import lombok.Data;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
+
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -15,7 +17,9 @@ import java.net.UnknownHostException;
 import java.util.Set;
 
 /**
- * Created by izeye on 15. 11. 19..
+ * {@link FactoryBean} for {@link TransportClient}.
+ *
+ * @author Johnny Lim
  */
 @Data
 public class TransportClientFactoryBean implements FactoryBean<TransportClient>, InitializingBean, DisposableBean {
@@ -55,9 +59,9 @@ public class TransportClientFactoryBean implements FactoryBean<TransportClient>,
 	}
 
 	private void createTransportClient() {
-		this.client = TransportClient.builder().settings(settings()).build();
-		Assert.hasText(clusterNodes, "clusterNodes must have a value.");
-		Set<String> nodes = StringUtils.commaDelimitedListToSet(clusterNodes);
+		this.client = new PreBuiltTransportClient(settings());;
+		Assert.hasText(this.clusterNodes, "clusterNodes must have a value.");
+		Set<String> nodes = StringUtils.commaDelimitedListToSet(this.clusterNodes);
 		for (String node : nodes) {
 			int index = node.indexOf(COLON);
 			Assert.isTrue(index >= 0, "':' is missing in a cluster node value: " + node);
@@ -74,8 +78,7 @@ public class TransportClientFactoryBean implements FactoryBean<TransportClient>,
 	}
 	
 	private Settings settings() {
-		return Settings.settingsBuilder()
-				.put("cluster.name", clusterName).build();
+		return Settings.builder().put("cluster.name", this.clusterName).build();
 	}
 	
 }

@@ -3,6 +3,7 @@ package com.izeye.throwaway.config;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
@@ -23,7 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class ElasticsearchConfigurationTests {
 	
 	@Autowired
-	Client client;
+	private Client client;
 	
 	@Test
 	public void test() {
@@ -37,9 +38,9 @@ public class ElasticsearchConfigurationTests {
 
 	@Test
 	public void testIndex() {
-		String json = "{firstName: \"Johnny\", lastName: \"Lim\", age: 20}";
+		String json = "{\"firstName\": \"Johnny\", \"lastName\": \"Lim\", \"age\": 20}";
 		IndexResponse response = this.client.prepareIndex("persons", "persons")
-				.setSource(json).get();
+				.setSource(json, XContentType.JSON).get();
 		System.out.println(response);
 	}
 	

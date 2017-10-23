@@ -20,6 +20,11 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 import static org.elasticsearch.index.query.QueryBuilders.existsQuery;
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
+/**
+ * Tests for {@link Client}.
+ *
+ * @author Johnny Lim
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ElasticsearchClientTests {

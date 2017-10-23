@@ -31,9 +31,11 @@ repositories {
     mavenLocal()
 }
 
+ext['elasticsearch.version'] = '5.6.3'
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
-    compile("org.elasticsearch:elasticsearch:$elasticsearchVersion")
+    compile("org.elasticsearch.client:transport")
     compile("com.fasterxml.jackson.core:jackson-core:2.6.6")
 
     compileOnly("org.projectlombok:lombok")
