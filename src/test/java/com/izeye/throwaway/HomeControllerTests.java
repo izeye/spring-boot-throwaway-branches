@@ -28,4 +28,12 @@ public class HomeControllerTests {
 		assertThat(message).isEqualTo("Hello, world!");
 	}
 
+	@Test
+	public void testEcho() {
+		// NOTE: Check reserved character ',' is okay in parameter value.
+		// See https://tools.ietf.org/html/rfc3986#section-2.2
+		assertThat(this.restTemplate.getForObject("/echo?value={a},{b}", String.class, "hello", "world"))
+				.isEqualTo(this.restTemplate.getForObject("/echo?value={value}", String.class, "hello,world"));
+	}
+
 }
