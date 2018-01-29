@@ -33,6 +33,7 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.apache.httpcomponents:httpclient")
 
     compileOnly("org.projectlombok:lombok")
 
