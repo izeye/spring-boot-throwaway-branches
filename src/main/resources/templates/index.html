@@ -1,5 +1,15 @@
-This is a home page!
+This is a home page!<p>
 
-My name is <th:block th:text="${someMap.firstName}"></th:block> <th:block th:text="${someMap.lastName}"></th:block>.
+My name is <th:block th:text="${someMap.firstName}"></th:block> <th:block th:text="${someMap.lastName}"></th:block>.<p>
 
-I'm <th:block th:text="${someMap.age}"></th:block> years old.
+I'm <th:block th:text="${someMap.age}"></th:block> years old.<p>
+
+Try existent property:
+<th:block th:if="${someMap['firstName'] != null}" th:text="'firstName has been found.'"></th:block>
+<th:block th:if="${someMap['firstName'] == null}" th:text="'firstName has not been found.'"></th:block>
+<p>
+
+Try non-existent property:
+<th:block th:if="${someMap['nonExistent'] != null}" th:text="'nonExistent has been found.'"></th:block>
+<th:block th:if="${someMap['nonExistent'] == null}" th:text="'nonExistent has not been found.'"></th:block>
+<p>
