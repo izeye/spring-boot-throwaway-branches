@@ -38,10 +38,11 @@ dependencies {
     compile("net.sourceforge.nekohtml:nekohtml")
 
     compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0.1'
+    gradleVersion = '4.7'
 }
