@@ -12,7 +12,8 @@ import org.junit.runner.RunWith;
  * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+// FIXME: SpringBootTest.WebEnvironment.NONE causes NoSuchBeanDefinitionException.
+@SpringBootTest
 public class ApplicationTests {
 
 	@Test
