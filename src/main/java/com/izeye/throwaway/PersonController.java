@@ -20,6 +20,7 @@ public class PersonController {
 
 	// curl -v -XPOST -H "Accept: application/json" -H "Content-type: application/json" -d '{"firstName": "Johnny", "lastName": "Lim"}' "http://localhost:8080/persons"
 	// curl -v -XPOST -H "Accept: application/json" -H "Content-type: application/json" -d @person.json "http://localhost:8080/persons"
+	// curl -v -XPOST -H "Accept: application/json" -H "Content-type: application/json" -H "Content-Encoding: gzip" --data-binary @person.json.gz "http://localhost:8080/persons"
 	@PostMapping
 	public Person post(@RequestBody Person person, HttpServletRequest request) {
 		System.out.println("Headers:");
