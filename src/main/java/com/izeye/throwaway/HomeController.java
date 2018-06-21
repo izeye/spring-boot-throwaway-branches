@@ -23,6 +23,11 @@ public class HomeController {
 
 	@GetMapping("/httpServletRequest")
 	public String httpServletRequest(HttpServletRequest request) {
+		StringBuffer requestURL = request.getRequestURL();
+		System.out.println("requestURL: " + requestURL);
+		requestURL.append("?a=b");
+		System.out.println("requestURL: " + requestURL);
+		System.out.println("request.getRequestURL(): " + request.getRequestURL());
 		return request.toString();
 	}
 
