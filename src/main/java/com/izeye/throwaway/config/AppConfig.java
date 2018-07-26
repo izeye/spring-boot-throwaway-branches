@@ -32,5 +32,10 @@ public class AppConfig {
 	public SomeService someService() {
 		return new SomeService();
 	}
+
+	@Bean
+	public String nullBean() {
+		return null;
+	}
 	
 }
