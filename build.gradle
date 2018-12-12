@@ -10,7 +10,6 @@ buildscript {
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
     }
 }
 
@@ -18,7 +17,6 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'propdeps'
 
 sourceCompatibility = 1.8
 
@@ -37,11 +35,12 @@ dependencies {
     
     runtime("com.h2database:h2")
 
-    provided("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.0'
+wrapper() {
+    gradleVersion = '5.0'
 }
