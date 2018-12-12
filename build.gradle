@@ -40,15 +40,18 @@ dependencies {
     compile("com.google.code.gson:gson")
 
     compileOnly("org.projectlombok:lombok")
-    testCompileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    testCompileOnly("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
 }
 
 task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyReportTask) {
     configurations = project.buildscript.configurations
 }
 
-task wrapper(type: Wrapper) {
+wrapper {
     gradleVersion = '4.10.2'
 }
