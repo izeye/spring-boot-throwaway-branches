@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<button onclick="alert('Hello!');">Click me!</button>
+<div>Company (jQuery)</div>
+<div id="company"></div>
+<script>
+    var url = 'http://localhost:8080/company';
+    // var url = 'http://127.0.0.1:8080/company';
+    $.ajax({
+        url: url,
+        success: function (result) {
+            $("#company").html("<strong>" + result.name + "</strong>");
+        }
+    });
+</script>
+</body>
+</html>
