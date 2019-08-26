@@ -41,5 +41,5 @@ dependencies {
 }
 
 wrapper {
-    gradleVersion = '4.8'
+    gradleVersion = '5.6'
 }
