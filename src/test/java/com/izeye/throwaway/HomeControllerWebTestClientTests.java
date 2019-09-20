@@ -53,7 +53,9 @@ public class HomeControllerWebTestClientTests {
 		String[] parameters = query.split("&");
 		for (String parameter : parameters) {
 			String[] pair = parameter.split("=");
-			parameterMap.add(pair[0], URLDecoder.decode(pair[1], "UTF-8"));
+			if (pair.length == 2) {
+				parameterMap.add(pair[0], URLDecoder.decode(pair[1], "UTF-8"));
+			}
 		}
 		return parameterMap;
 	}
