@@ -42,16 +42,20 @@ dependencies {
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("com.google.code.gson:gson")
 
-    provided("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     // Use compile scope for @JdbcTest.
     compile("org.springframework.boot:spring-boot-starter-test")
+
+    testCompileOnly("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
 }
 
 task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyReportTask) {
     configurations = project.buildscript.configurations
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.14.1'
+wrapper {
+    gradleVersion = '5.6.2'
 }
