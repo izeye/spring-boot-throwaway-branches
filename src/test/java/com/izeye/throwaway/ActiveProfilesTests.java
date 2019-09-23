@@ -1,13 +1,12 @@
-package learningtest.org.springframework.test.context;
+package com.izeye.throwaway;
 
-import com.izeye.throwaway.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -15,8 +14,8 @@ import static org.hamcrest.core.Is.is;
 /**
  * Created by izeye on 15. 12. 4..
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
 @ActiveProfiles({"test1", "test2"})
 public class ActiveProfilesTests {
 	

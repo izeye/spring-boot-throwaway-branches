@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -25,10 +26,9 @@ public class ApplicationTests {
 
 	@Test
 	public void testDataSource() {
-		assertThat(this.dataSource).isInstanceOf(org.apache.tomcat.jdbc.pool.DataSource.class);
-		org.apache.tomcat.jdbc.pool.DataSource tomcatJdbcPoolDataSource =
-				(org.apache.tomcat.jdbc.pool.DataSource) this.dataSource;
-		assertThat(tomcatJdbcPoolDataSource.isTestOnBorrow()).isTrue();
+		assertThat(this.dataSource).isInstanceOf(HikariDataSource.class);
+		HikariDataSource hikariDataSource = (HikariDataSource) this.dataSource;
+		assertThat(hikariDataSource.getMaximumPoolSize()).isEqualTo(2);
 	}
 
 }
