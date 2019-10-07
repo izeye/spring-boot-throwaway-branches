@@ -1,5 +1,8 @@
 package com.izeye.throwaway;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +42,15 @@ public class HomeController {
 	@GetMapping("/echo")
 	public String echo(@RequestParam String value) {
 		return value;
+	}
+
+	@GetMapping("/map")
+	public Map<String, Object> map() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("firstName", "Johnny");
+		map.put("lastName", "Lim");
+		map.put("age", 20);
+		return map;
 	}
 
 }
