@@ -39,7 +39,7 @@ asciidoctor {
     attributes 'snippets': snippetsDir
     inputs.dir snippetsDir
     dependsOn test
-    baseDirFollowsSourceDir()
+//    baseDirFollowsSourceDir()
 }
 
 jar {
