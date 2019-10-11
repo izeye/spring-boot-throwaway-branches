@@ -5,20 +5,18 @@ buildscript {
         maven { url "http://repo.spring.io/libs-release" }
         maven { url "http://repo.spring.io/libs-milestone" }
         maven { url "http://repo.spring.io/snapshot" }
-        maven { url 'http://repo.spring.io/plugins-release' }
     }
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'propdeps'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 
@@ -37,13 +35,13 @@ ext['spring-restdocs.version'] = '1.0.0.RELEASE'
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
 
-    provided("org.projectlombok:lombok:$lombokVersion")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 
-task wrapper(type: Wrapper) {
-//    gradleVersion = '2.0'
-    gradleVersion = '2.7'
+wrapper {
+    gradleVersion = '5.6.2'
 }
