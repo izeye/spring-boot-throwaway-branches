@@ -1,3 +1,4 @@
 = Documentation
 
-include::{includedir}/api-guide.adoc[leveloffset=+1]
+include::api-guide.adoc[leveloffset=+1]
+include::nested_1/index.adoc[leveloffset=+1]

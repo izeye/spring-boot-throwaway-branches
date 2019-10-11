@@ -1,0 +1,5 @@
+= Nested 1
+
+This is the 1-depth nested section.
+
+include::nested_2/index.adoc[leveloffset=+1]

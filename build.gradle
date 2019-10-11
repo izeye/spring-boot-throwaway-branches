@@ -13,6 +13,7 @@ buildscript {
 }
 
 plugins {
+//    id "org.asciidoctor.convert" version "1.6.1"
     id 'org.asciidoctor.jvm.convert' version '2.3.0'
 }
 
@@ -38,7 +39,7 @@ asciidoctor {
     attributes 'snippets': snippetsDir
     inputs.dir snippetsDir
     dependsOn test
-//    baseDirFollowsSourceDir()
+    baseDirFollowsSourceDir()
 }
 
 jar {
