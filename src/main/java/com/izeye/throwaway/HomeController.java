@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Home {@link RestController}.
@@ -46,11 +47,22 @@ public class HomeController {
 
 	@GetMapping("/map")
 	public Map<String, Object> map() {
+		return getPersonMap();
+	}
+
+	private Map<String, Object> getPersonMap() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("firstName", "Johnny");
 		map.put("lastName", "Lim");
 		map.put("age", 20);
 		return map;
+	}
+
+	@GetMapping("/modelAndView")
+	public ModelAndView modelAndView() {
+		ModelAndView modelAndView = new ModelAndView("jsonView");
+		modelAndView.addObject("person", getPersonMap());
+		return modelAndView;
 	}
 
 }
