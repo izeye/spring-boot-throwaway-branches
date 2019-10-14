@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
 /**
  * Home {@link RestController}.
  *
@@ -23,6 +26,8 @@ public class HomeController {
 	public String helloWorld() {
 		return "Hello, world!";
 	}
+
+	private final XmlMapper xmlMapper = new XmlMapper();
 
 	@GetMapping("/httpServletRequest")
 	public String httpServletRequest(HttpServletRequest request) {
@@ -46,11 +51,26 @@ public class HomeController {
 
 	@GetMapping("/map")
 	public Map<String, Object> map() {
+		return getPersonMap();
+	}
+
+	private Map<String, Object> getPersonMap() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("firstName", "Johnny");
 		map.put("lastName", "Lim");
 		map.put("age", 20);
 		return map;
+	}
+
+	@GetMapping(path = "/map", headers = "Accept=application/xml")
+	public String mapXml() {
+		try {
+			return this.xmlMapper.writer()
+					.withRootName("root")
+					.writeValueAsString(getPersonMap());
+		} catch (JsonProcessingException ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 
 }
