@@ -75,4 +75,9 @@ public class HomeController {
 		}
 	}
 
+	@GetMapping("/person")
+	public Person person() {
+		return new Person("Johnny", "Lim", 20);
+	}
+
 }
