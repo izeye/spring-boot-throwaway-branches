@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link HomeController}.
+ * Integration tests for {@link HomeController}.
  *
  * @author Johnny Lim
  */
