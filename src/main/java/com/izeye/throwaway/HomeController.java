@@ -68,6 +68,12 @@ public class HomeController {
 		return modelAndView;
 	}
 
+	@GetMapping("/responseEntity")
+	public ResponseEntity<Map<String, Object>> responseEntity() {
+		return ResponseEntity.ok()
+				.body(getPersonMap());
+	}
+
 	@GetMapping("/responseEntityCacheControlEmpty")
 	public ResponseEntity<Map<String, Object>> responseEntityCacheControlEmpty() {
 		return ResponseEntity.ok()
@@ -75,10 +81,10 @@ public class HomeController {
 				.body(getPersonMap());
 	}
 
-	@GetMapping("/responseEntityCacheControlNoCache")
-	public ResponseEntity<Map<String, Object>> responseEntityCacheControlNoCache() {
+	@GetMapping("/responseEntityCacheControlNoStore")
+	public ResponseEntity<Map<String, Object>> responseEntityCacheControlNoStore() {
 		return ResponseEntity.ok()
-				.cacheControl(CacheControl.noCache())
+				.cacheControl(CacheControl.noStore())
 				.body(getPersonMap());
 	}
 

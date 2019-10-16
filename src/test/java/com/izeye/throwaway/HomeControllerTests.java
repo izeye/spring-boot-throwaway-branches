@@ -28,10 +28,31 @@ public class HomeControllerTests {
 	private MockMvc mockMvc;
 
 	@Test
+	public void responseEntityNoCacheControl() throws Exception {
+		this.mockMvc.perform(get("/responseEntity"))
+				.andExpect(status().isOk())
+				.andExpect(header().doesNotExist(HttpHeaders.CACHE_CONTROL));
+	}
+
+	@Test
 	public void responseEntityCacheControlEmpty() throws Exception {
 		this.mockMvc.perform(get("/responseEntityCacheControlEmpty"))
 				.andExpect(status().isOk())
 				.andExpect(header().doesNotExist(HttpHeaders.CACHE_CONTROL));
+	}
+
+	@Test
+	public void responseEntityCacheControlNoStore() throws Exception {
+		this.mockMvc.perform(get("/responseEntityCacheControlNoStore"))
+				.andExpect(status().isOk())
+				.andExpect(header().string(HttpHeaders.CACHE_CONTROL, "no-store"));
+	}
+
+	@Test
+	public void responseEntityCacheControlMaxAge() throws Exception {
+		this.mockMvc.perform(get("/responseEntityCacheControlMaxAge"))
+				.andExpect(status().isOk())
+				.andExpect(header().string(HttpHeaders.CACHE_CONTROL, "max-age=600"));
 	}
 
 }
