@@ -11,13 +11,13 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link HomeController}.
+ * Integration tests for {@link HomeController}.
  *
  * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HomeControllerTests {
+public class HomeControllerIntegrationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
