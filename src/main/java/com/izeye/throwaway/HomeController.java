@@ -1,10 +1,13 @@
 package com.izeye.throwaway;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.CacheControl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,6 +66,27 @@ public class HomeController {
 		ModelAndView modelAndView = new ModelAndView("jsonView");
 		modelAndView.addObject("person", getPersonMap());
 		return modelAndView;
+	}
+
+	@GetMapping("/responseEntityCacheControlEmpty")
+	public ResponseEntity<Map<String, Object>> responseEntityCacheControlEmpty() {
+		return ResponseEntity.ok()
+				.cacheControl(CacheControl.empty())
+				.body(getPersonMap());
+	}
+
+	@GetMapping("/responseEntityCacheControlNoCache")
+	public ResponseEntity<Map<String, Object>> responseEntityCacheControlNoCache() {
+		return ResponseEntity.ok()
+				.cacheControl(CacheControl.noCache())
+				.body(getPersonMap());
+	}
+
+	@GetMapping("/responseEntityCacheControlMaxAge")
+	public ResponseEntity<Map<String, Object>> responseEntityCacheControlMaxAge() {
+		return ResponseEntity.ok()
+				.cacheControl(CacheControl.maxAge(Duration.ofMinutes(10)))
+				.body(getPersonMap());
 	}
 
 }
