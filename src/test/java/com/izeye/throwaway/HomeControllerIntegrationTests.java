@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HomeControllerTests {
+public class HomeControllerIntegrationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
