@@ -3,9 +3,9 @@ package learningtest.org.springframework.boot.web.client;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -53,19 +53,15 @@ public class RestTemplateBuilderTests {
 	@Before
 	public void setUp() {
 		HttpClient httpClient = HttpClientBuilder.create().addInterceptorFirst(
-				new HttpResponseInterceptor() {
-					@Override
-					public void process(HttpResponse response, HttpContext context)
-							throws HttpException, IOException {
-						if (RestTemplateBuilderTests.this.gzipExpected) {
-							String contentEncoding = response.getFirstHeader("Content-Encoding").getValue();
-							assertThat(contentEncoding).isEqualTo("gzip");
-						}
+				(HttpResponseInterceptor) (response, context) -> {
+					if (RestTemplateBuilderTests.this.gzipExpected) {
+						String contentEncoding = response.getFirstHeader("Content-Encoding").getValue();
+						assertThat(contentEncoding).isEqualTo("gzip");
 					}
 				}).build();
 		HttpComponentsClientHttpRequestFactory requestFactory =
 				new HttpComponentsClientHttpRequestFactory(httpClient);
-		this.restTemplate = this.restTemplateBuilder.requestFactory(requestFactory).build();
+		this.restTemplate = this.restTemplateBuilder.requestFactory(() -> requestFactory).build();
 	}
 
 	@Test

@@ -1,7 +1,7 @@
 package com.izeye.throwaway.config;
 
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,17 +25,11 @@ public class WebConfig {
 	}
 
 	@Bean
-	public EmbeddedServletContainerCustomizer containerCustomizer() {
-		return container -> {
-			if (container instanceof TomcatEmbeddedServletContainerFactory) {
-				TomcatEmbeddedServletContainerFactory containerFactory =
-						(TomcatEmbeddedServletContainerFactory) container;
-
-				LogbackValve logbackValve = new LogbackValve();
-				logbackValve.setFilename("logback-access.xml");
-
-				containerFactory.addContextValves(logbackValve);
-			}
+	public WebServerFactoryCustomizer<TomcatServletWebServerFactory> containerCustomizer() {
+		return (factory) -> {
+			LogbackValve logbackValve = new LogbackValve();
+			logbackValve.setFilename("logback-access.xml");
+			factory.addContextValves(logbackValve);
 		};
 	}
 
