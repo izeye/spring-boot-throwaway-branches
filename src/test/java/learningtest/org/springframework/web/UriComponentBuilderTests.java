@@ -4,7 +4,6 @@ import java.net.URI;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -14,8 +13,6 @@ import org.junit.Test;
  */
 public class UriComponentBuilderTests {
 
-	// FIXME: See https://github.com/spring-projects/spring-framework/issues/19394
-	@Ignore
 	@Test
 	public void testFromHttpUrlBuildEncoded() {
 		// Works with '%20' for a space
@@ -23,7 +20,8 @@ public class UriComponentBuilderTests {
 		URI uri = UriComponentsBuilder.fromHttpUrl(httpUrl).build(true).toUri();
 		System.out.println(uri);
 
-		// but doesn't work with '+' for a space.
+		// Works with '+' for a space.
+		// See https://github.com/spring-projects/spring-framework/issues/19394
 		httpUrl = "http://localhost:8080/test/print?value=%EA%B0%80+%EB%82%98";
 		uri = UriComponentsBuilder.fromHttpUrl(httpUrl).build(true).toUri();
 		System.out.println(uri);
