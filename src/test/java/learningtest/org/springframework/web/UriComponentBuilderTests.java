@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -13,6 +14,8 @@ import org.junit.Test;
  */
 public class UriComponentBuilderTests {
 
+	// FIXME: See https://github.com/spring-projects/spring-framework/issues/19394
+	@Ignore
 	@Test
 	public void testFromHttpUrlBuildEncoded() {
 		// Works with '%20' for a space
