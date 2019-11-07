@@ -5,12 +5,10 @@ buildscript {
         maven { url "http://repo.spring.io/libs-release" }
         maven { url "http://repo.spring.io/libs-milestone" }
         maven { url "http://repo.spring.io/snapshot" }
-        maven { url 'http://repo.spring.io/plugins-release' }
     }
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
     }
 }
 
@@ -18,7 +16,6 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'propdeps'
 
 sourceCompatibility = 1.8
 
