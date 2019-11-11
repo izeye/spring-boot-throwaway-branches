@@ -53,5 +53,5 @@ task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyRe
 }
 
 wrapper {
-    gradleVersion = '5.6.4'
+    gradleVersion = '6.0'
 }
