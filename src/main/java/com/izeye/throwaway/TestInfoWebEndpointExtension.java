@@ -1,6 +1,6 @@
 package com.izeye.throwaway;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
@@ -25,7 +25,9 @@ public class TestInfoWebEndpointExtension {
 
 	@ReadOperation
 	public Map<String, Object> info() {
-		return Collections.singletonMap("message", "Hello, world!");
+		Map<String, Object> info = new HashMap<>(this.delegate.info());
+		info.put("message", "Hello, world!");
+		return info;
 	}
 
 }
