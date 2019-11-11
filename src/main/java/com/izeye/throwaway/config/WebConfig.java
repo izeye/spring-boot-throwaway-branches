@@ -25,7 +25,7 @@ public class WebConfig {
 	}
 
 	@Bean
-	public WebServerFactoryCustomizer<TomcatServletWebServerFactory> containerCustomizer() {
+	public WebServerFactoryCustomizer<TomcatServletWebServerFactory> logbackAccessCustomizer() {
 		return (factory) -> {
 			LogbackValve logbackValve = new LogbackValve();
 			logbackValve.setFilename("logback-access.xml");
