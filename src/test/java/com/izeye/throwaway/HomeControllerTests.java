@@ -31,14 +31,16 @@ public class HomeControllerTests {
 	public void responseEntityNoCacheControl() throws Exception {
 		this.mockMvc.perform(get("/responseEntity"))
 				.andExpect(status().isOk())
-				.andExpect(header().doesNotExist(HttpHeaders.CACHE_CONTROL));
+				// Spring Security does seem to add a "Cache-Control" header.
+				.andExpect(header().exists(HttpHeaders.CACHE_CONTROL));
 	}
 
 	@Test
 	public void responseEntityCacheControlEmpty() throws Exception {
 		this.mockMvc.perform(get("/responseEntityCacheControlEmpty"))
 				.andExpect(status().isOk())
-				.andExpect(header().doesNotExist(HttpHeaders.CACHE_CONTROL));
+				// Spring Security does seem to add a "Cache-Control" header.
+				.andExpect(header().exists(HttpHeaders.CACHE_CONTROL));
 	}
 
 	@Test

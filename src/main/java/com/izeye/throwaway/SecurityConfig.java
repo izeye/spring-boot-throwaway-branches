@@ -15,11 +15,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.requestMatcher(EndpointRequest.toAnyEndpoint())
-				.authorizeRequests((requests) -> requests.anyRequest().authenticated())
-				.httpBasic()
-				.and()
-				.csrf().disable();
+		http.csrf().disable();
+
+		http.authorizeRequests()
+				.requestMatchers(EndpointRequest.toAnyEndpoint()).authenticated()
+				.regexMatchers("/persons").authenticated()
+				.and().httpBasic();
 	}
 
 }
