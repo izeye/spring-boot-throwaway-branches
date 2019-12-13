@@ -23,6 +23,10 @@ import org.junit.runner.RunWith;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HomeControllerWebTestClientTests {
 
+	static {
+		System.setProperty("io.netty.noUnsafe", Boolean.toString(true));
+	}
+
 	@Autowired
 	private WebTestClient webTestClient;
 
