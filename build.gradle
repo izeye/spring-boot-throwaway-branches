@@ -23,6 +23,8 @@ sourceCompatibility = 1.8
 
 version = '1.0'
 
+ext['netty.version'] = '4.1.44.Final'
+
 repositories {
     jcenter()
     maven { url "http://repo.spring.io/libs-release" }
