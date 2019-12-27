@@ -39,6 +39,6 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.4'
+wrapper {
+    gradleVersion = '6.0.1'
 }
