@@ -1,28 +1,28 @@
 package learningtest.org.springframework.boot.test.rule;
 
-import org.springframework.boot.test.rule.OutputCapture;
-
 import org.junit.Rule;
 import org.junit.Test;
+
+import org.springframework.boot.test.system.OutputCaptureRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link OutputCapture}.
+ * Tests for {@link OutputCaptureRule}.
  *
  * @author Johnny Lim
  */
-public class OutputCaptureTests {
+public class OutputCaptureRuleTests {
 
 	@Rule
-	public OutputCapture outputCapture = new OutputCapture();
+	public OutputCaptureRule outputCaptureRule = new OutputCaptureRule();
 
 	@Test
 	public void testStandardOutput() {
 		String message = "Hello, world!";
 
 		System.out.print(message);
-		assertThat(this.outputCapture.toString()).isEqualTo(message);
+		assertThat(this.outputCaptureRule.toString()).isEqualTo(message);
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class OutputCaptureTests {
 		String message = "Hello, world!";
 
 		System.err.print(message);
-		assertThat(this.outputCapture.toString()).isEqualTo(message);
+		assertThat(this.outputCaptureRule.toString()).isEqualTo(message);
 	}
 
 }
