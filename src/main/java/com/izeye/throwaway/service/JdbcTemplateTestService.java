@@ -25,7 +25,6 @@ public class JdbcTemplateTestService {
 		System.out.println(firstSql + " => " + this.jdbcTemplate.queryForObject(firstSql, Object.class));
 		String secondSql = "SELECT first_name FROM person WHERE last_name = 'Lim';";
 		System.out.println(secondSql + " => " + this.jdbcTemplate.queryForObject(secondSql, Object.class));
-
 	}
 
 }
