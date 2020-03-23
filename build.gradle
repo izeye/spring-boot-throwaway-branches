@@ -40,7 +40,8 @@ dependencies {
 }
 
 bootJar {
-    layered()
+//    layered()
+    layers()
 }
 
 wrapper {
