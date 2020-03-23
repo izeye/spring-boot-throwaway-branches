@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        mavenLocal()
+//        mavenLocal()
         jcenter()
         maven { url "https://repo.spring.io/libs-release" }
         maven { url "https://repo.spring.io/libs-milestone" }
@@ -24,11 +24,11 @@ sourceCompatibility = 1.8
 version = '1.0'
 
 repositories {
+//    mavenLocal()
     jcenter()
     maven { url "https://repo.spring.io/libs-release" }
     maven { url "https://repo.spring.io/libs-milestone" }
     maven { url "https://repo.spring.io/snapshot" }
-    mavenLocal()
 }
 
 dependencies {
@@ -40,7 +40,6 @@ dependencies {
 }
 
 bootJar {
-//    layered()
     layers()
 }
 
