@@ -10,7 +10,6 @@ buildscript {
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion")
     }
 }
 
@@ -19,7 +18,6 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'com.github.ben-manes.versions'
 
 sourceCompatibility = 1.8
 
