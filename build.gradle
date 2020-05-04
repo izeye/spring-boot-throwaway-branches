@@ -46,6 +46,10 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok")
 }
 
+test {
+    useJUnitPlatform()
+}
+
 task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyReportTask) {
     configurations = project.buildscript.configurations
 }
