@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <property name="MDC_ENABLED_CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} [%X{requestId}] %m%n%rEx" />
+    <property name="MDC_ENABLED_FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%t] %-40.40logger{39} : [%X{requestId}] %m%n%rEx" />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${MDC_ENABLED_CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <property name="DEBUG_LOG_FILE" value="logs/debug.log" />
+
+    <appender name="DEBUG_LOG_APPENDER"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEBUG_LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${DEBUG_LOG_FILE}.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxHistory>3</maxHistory>
+            <maxFileSize>1MB</maxFileSize>
+            <totalSizeCap>5MB</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${MDC_ENABLED_FILE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_DEBUG_LOG_APPENDER" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="DEBUG_LOG_APPENDER"/>
+        <queueSize>2048</queueSize>
+        <neverBlock>true</neverBlock>
+    </appender>
+
+    <springProfile name="production">
+        <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook">
+            <delay>5000</delay>
+        </shutdownHook>
+    </springProfile>
+
+    <root level="INFO">
+        <appender-ref ref="ASYNC_DEBUG_LOG_APPENDER" />
+
+        <springProfile name="local">
+            <appender-ref ref="CONSOLE" />
+        </springProfile>
+    </root>
+</configuration>
