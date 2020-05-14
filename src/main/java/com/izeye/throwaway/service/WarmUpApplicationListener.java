@@ -3,6 +3,7 @@ package com.izeye.throwaway.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
@@ -24,6 +25,13 @@ public class WarmUpApplicationListener implements ApplicationListener<Applicatio
 	@Override
 	public void onApplicationEvent(ApplicationStartedEvent event) {
 		log.info("In onApplicationEvent(): {}", event);
+
+		try {
+			TimeUnit.SECONDS.sleep(10);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+			throw new RuntimeException(ex);
+		}
 
 		List<String> ids = Arrays.asList("test1", "test2");
 		List<Thread> threads = new ArrayList<>();
