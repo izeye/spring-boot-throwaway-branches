@@ -1,5 +1,7 @@
 package com.izeye.throwaway.config;
 
+import java.util.Objects;
+
 import com.izeye.throwaway.service.DefaultPersonServiceConsumer;
 import com.izeye.throwaway.service.PersonServiceConsumer;
 import org.junit.Test;
@@ -34,8 +36,18 @@ public class AppConfigTests {
 	public void testNullBean() {
 		Object nullBean = this.context.getBean("nullBean");
 
+		assertThat(nullBean == null).isFalse();
+		assertThat(nullBean.equals(null)).isTrue();
+		assertThat(Objects.equals(nullBean, null)).isTrue();
+		assertThat(Objects.deepEquals(nullBean, null)).isFalse();
+
 		assertThat(nullBean).isNotNull();
-		assertThat(nullBean).isEqualTo(null);
+
+		// AssertJ's isEqualTo() has been changed somewhere between 3.15.0 and 3.16.1.
+		// 3.15.0 uses java.util.Objects.equals(), but 3.16.1 uses java.util.Objects.deepEquals().
+		// I'm not sure if this is intentional, but it's diverged with Object.equals() anyway.
+//		assertThat(nullBean).isEqualTo(null);
+		assertThat(nullBean).isNotEqualTo(null);
 	}
 	
 }
