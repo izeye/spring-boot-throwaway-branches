@@ -48,6 +48,10 @@ dependencies {
     testAnnotationProcessor("org.projectlombok:lombok")
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation', '-parameters']
+}
+
 test {
     useJUnitPlatform()
 }

@@ -5,41 +5,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Tests with {@code nested} nested profile for {@link ProfileNestedProfileConfig}.
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("nested")
-public class ProfileNestedProfileConfigWithNestedProfileTests {
-
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
+class ProfileNestedProfileConfigWithNestedProfileTests {
 
 	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Test
-	public void testStringInProfileNestedProfileConfig() {
-		this.thrown.expect(NoSuchBeanDefinitionException.class);
-		this.applicationContext.getBean("stringInProfileNestedProfileConfig");
+	void testStringInProfileNestedProfileConfig() {
+		assertThatThrownBy(() -> this.applicationContext.getBean("stringInProfileNestedProfileConfig"))
+				.isExactlyInstanceOf(NoSuchBeanDefinitionException.class);
 	}
 
 	@Test
-	public void testIntegerInProfileNestedProfileConfig() {
-		this.thrown.expect(NoSuchBeanDefinitionException.class);
-		this.applicationContext.getBean("integerInProfileNestedProfileConfig");
+	void testIntegerInProfileNestedProfileConfig() {
+		assertThatThrownBy(() -> this.applicationContext.getBean("integerInProfileNestedProfileConfig"))
+				.isExactlyInstanceOf(NoSuchBeanDefinitionException.class);
 	}
 
 }

@@ -5,38 +5,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Tests with {@code test} profile for {@link ProfileNestedProfileConfig}.
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("test")
-public class ProfileNestedProfileConfigTests {
-
-	@Rule
-	public ExpectedException thrown = ExpectedException.none();
+class ProfileNestedProfileConfigTests {
 
 	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Test
-	public void test() {
+	void test() {
 		assertThat(this.applicationContext.getBean("stringInProfileNestedProfileConfig"))
 				.isEqualTo("string");
 
-		this.thrown.expect(NoSuchBeanDefinitionException.class);
-		this.applicationContext.getBean("integerInProfileNestedProfileConfig");
+		assertThatThrownBy(() -> this.applicationContext.getBean("integerInProfileNestedProfileConfig"))
+				.isExactlyInstanceOf(NoSuchBeanDefinitionException.class);
 	}
 
 }
