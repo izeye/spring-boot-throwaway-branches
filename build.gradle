@@ -34,15 +34,15 @@ repositories {
 //ext['assertj.version'] = '3.15.0'
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter")
-    
-    compile("com.fasterxml.jackson.core:jackson-databind")
-    compile("com.google.code.gson:gson")
+    implementation("org.springframework.boot:spring-boot-starter")
+
+    implementation("com.fasterxml.jackson.core:jackson-databind")
+    implementation("com.google.code.gson:gson")
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
