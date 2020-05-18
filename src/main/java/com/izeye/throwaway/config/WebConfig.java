@@ -1,4 +1,4 @@
-package com.izeye.throwaway;
+package com.izeye.throwaway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

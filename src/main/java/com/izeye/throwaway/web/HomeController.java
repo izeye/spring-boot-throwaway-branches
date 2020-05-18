@@ -1,4 +1,4 @@
-package com.izeye.throwaway;
+package com.izeye.throwaway.web;
 
 import java.time.Duration;
 import java.util.HashMap;
