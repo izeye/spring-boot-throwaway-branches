@@ -13,13 +13,13 @@ import org.junit.runner.RunWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests with {@code test} profile for {@link NestedProfileConfig}.
+ * Tests with {@code static-inner} profile for {@link NestedProfileConfig}.
  *
  * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("test")
+@ActiveProfiles("static-inner")
 public class NestedProfileConfigWithProfileTests {
 
 	@Autowired

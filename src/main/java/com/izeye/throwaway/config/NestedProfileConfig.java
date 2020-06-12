@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 /**
- * {@link Configuration} having a nested configuration class with {@code test} profile.
+ * {@link Configuration} having a nested configuration class with {@code static-inner} profile.
  *
  * @author Johnny Lim
  */
@@ -18,7 +18,7 @@ public class NestedProfileConfig {
 	}
 
 	@Configuration
-	@Profile("test")
+	@Profile("static-inner")
 	public static class NestedConfiguration {
 
 		@Bean
