@@ -49,6 +49,9 @@ springBoot {
     buildInfo()
 }
 
+// FIXME: See https://github.com/GoogleContainerTools/distroless/issues/253
+jib.container.jvmFlags = ["-Dfile.encoding=UTF-8"]
+
 wrapper {
     gradleVersion = '6.5'
 }
