@@ -56,7 +56,7 @@ tasks.minify {
     doLast {
         fileTree("$rootDir/src/main/resources/public/js")
                 .filter { it.name.endsWith(".min.js") }
-                .forEach { it.append("//# sourceMappingURL=${it.name}.map") }
+                .forEach { it.append("\n//# sourceMappingURL=${it.name}.map") }
     }
 }
 
