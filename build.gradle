@@ -13,6 +13,10 @@ buildscript {
     }
 }
 
+plugins {
+    id("org.padler.gradle.minify") version "1.5.1"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
@@ -39,6 +43,25 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+minification {
+    jsSrcDir = "$rootDir/src/main/resources/js"
+    jsDstDir = "$rootDir/src/main/resources/public/js"
+
+    createJsSourceMaps = true
+}
+
+tasks.minify {
+    doLast {
+        fileTree("$rootDir/src/main/resources/public/js")
+                .filter { it.name.endsWith(".min.js") }
+                .forEach { it.append("//# sourceMappingURL=${it.name}.map") }
+    }
+}
+
+tasks.processResources {
+    dependsOn(tasks.minify)
 }
 
 wrapper {
