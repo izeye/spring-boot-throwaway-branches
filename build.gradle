@@ -14,7 +14,7 @@ buildscript {
 }
 
 plugins {
-    id("org.padler.gradle.minify") version "1.5.1"
+    id("org.padler.gradle.minify") version "1.6.0"
 }
 
 apply plugin: 'java'
@@ -54,17 +54,6 @@ minification {
 
     createJsSourceMaps = true
     createCssSourceMaps = true
-}
-
-tasks.minify {
-    doLast {
-        fileTree("$buildDir/resources/main/public/js")
-                .filter { it.name.endsWith(".min.js") }
-                .forEach { it.append("\n//# sourceMappingURL=${it.name}.map") }
-        fileTree("$buildDir/resources/main/public/css")
-                .filter { it.name.endsWith(".min.css") }
-                .forEach { it.append("\n/*# sourceMappingURL=${it.name}.map */") }
-    }
 }
 
 tasks.processResources {
