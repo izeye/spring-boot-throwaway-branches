@@ -49,6 +49,6 @@ test {
     useJUnitPlatform()
 }
 
-wrapper() {
+wrapper {
     gradleVersion = '6.5'
 }
