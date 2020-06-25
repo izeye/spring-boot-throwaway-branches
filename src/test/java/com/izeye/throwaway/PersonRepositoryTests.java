@@ -1,13 +1,12 @@
 package com.izeye.throwaway;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,16 +15,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class PersonRepositoryTests {
+class PersonRepositoryTests {
 	
 	@Autowired
 	PersonRepository personRepository;
 	
 	@Test
 	@Transactional
-	public void test() {
+	void test() {
 		Person person = new Person();
 		person.setFirstName("Johnny");
 		person.setLastName("Lim");
