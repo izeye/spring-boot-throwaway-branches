@@ -9,11 +9,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Created by izeye on 15. 10. 1..
+ * Tests for {@link PersonRepository}.
+ *
+ * @author Johnny Lim
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -32,8 +33,8 @@ public class PersonRepositoryTests {
 		personRepository.save(person);
 
 		List<Person> persons = personRepository.findAll();
-		assertThat(persons.size(), is(1));
-		assertThat(persons.get(0), is(person));
+		assertThat(persons.size()).isEqualTo(1);
+		assertThat(persons.get(0)).isEqualTo(person);
 	}
 	
 }
