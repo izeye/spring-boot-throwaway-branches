@@ -31,8 +31,8 @@ class PersonRepositoryTests {
 		personRepository.save(person);
 
 		List<Person> persons = personRepository.findAll();
-		assertThat(persons.size()).isEqualTo(1);
-		assertThat(persons.get(0)).isEqualTo(person);
+		assertThat(persons.size()).isEqualTo(4);
+		assertThat(persons).contains(person);
 	}
 	
 }
