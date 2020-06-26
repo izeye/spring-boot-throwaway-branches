@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.1.RELEASE")
     }
 }
 
@@ -34,8 +34,6 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-
-    compile("net.sourceforge.nekohtml:nekohtml")
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")

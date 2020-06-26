@@ -33,7 +33,7 @@ public class ScriptTestControllerTests {
         String content = mvcResult.getResponse().getContentAsString();
         System.out.println(content);
         assertThat(content)
-                .contains("var message = \"http:\\/\\/localhost:-1\\/js\\/test.js\" + \"&param2=\" + param2;");
+                .contains("var message = \"http:\\/\\/localhost:18080\\/js\\/test.js\" + \"&param2=\" + param2;");
     }
 
 }
