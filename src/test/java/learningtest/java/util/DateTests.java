@@ -1,30 +1,28 @@
 package learningtest.java.util;
 
-import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.Date;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by izeye on 15. 10. 5..
  */
-public class DateTests {
+class DateTests {
 	
 	@Test
-	public void testBeforeAndAfter() {
+	void testBeforeAndAfter() {
 		Calendar calendar = Calendar.getInstance();
 		Date currentTime = calendar.getTime();
 		
 		calendar.setTimeInMillis(currentTime.getTime() - 1);
 		Date beforeTime = calendar.getTime();
-		assertTrue(beforeTime.before(currentTime));
+		assertThat(beforeTime.before(currentTime)).isTrue();
 		
 		calendar.setTimeInMillis(currentTime.getTime() + 1);
 		Date afterTime = calendar.getTime();
-		assertTrue(afterTime.after(currentTime));
-		
+		assertThat(afterTime.after(currentTime)).isTrue();
 	}
 	
 }

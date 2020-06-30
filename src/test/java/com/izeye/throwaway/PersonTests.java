@@ -1,23 +1,21 @@
 package com.izeye.throwaway;
 
-import org.junit.Test;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by izeye on 15. 9. 19..
  */
-public class PersonTests {
+class PersonTests {
 	
 	@Test
-	public void test() {
+	void test() {
 		long personId = 1L;
 		
 		Person person = new Person();
 		person.setId(personId);
 		
-		assertThat(person.getId(), is(personId));
+		assertThat(person.getId()).isEqualTo(personId);
 	}
 	
 }
