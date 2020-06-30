@@ -4,8 +4,7 @@ import java.util.Collections;
 
 import org.springframework.mock.web.MockHttpServletRequest;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -13,10 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class MockHttpServletRequestTests {
+class MockHttpServletRequestTests {
 
 	@Test
-	public void addHeaderAndRemoveHeader() {
+	void addHeaderAndRemoveHeader() {
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		String headerName = "Test";
 

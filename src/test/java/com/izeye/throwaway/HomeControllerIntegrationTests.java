@@ -6,8 +6,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.izeye.throwaway.web.HomeController;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,21 +15,20 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HomeControllerIntegrationTests {
+class HomeControllerIntegrationTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
 
 	@Test
-	public void testHelloWorld() {
+	void testHelloWorld() {
 		String message = this.restTemplate.getForObject("/hello-world", String.class);
 		assertThat(message).isEqualTo("Hello, world!");
 	}
 
 	@Test
-	public void testEcho() {
+	void testEcho() {
 		// NOTE: Check reserved character ',' is okay in parameter value.
 		// See https://tools.ietf.org/html/rfc3986#section-2.2
 		assertThat(this.restTemplate.getForObject("/echo?value={a},{b}", String.class, "hello", "world"))

@@ -4,8 +4,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.springframework.web.util.UriUtils;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -13,15 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class UriUtilsTests {
+class UriUtilsTests {
 
 	@Test
-	public void encode() {
+	void encode() {
 		assertThat(UriUtils.encode("a=${b}", StandardCharsets.UTF_8)).isEqualTo("a%3D%24%7Bb%7D");
 	}
 
 	@Test
-	public void encodeQuery() {
+	void encodeQuery() {
 		assertThat(UriUtils.encodeQuery("a=${b}", StandardCharsets.UTF_8)).isEqualTo("a=$%7Bb%7D");
 	}
 

@@ -6,36 +6,33 @@ import java.net.URLEncoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import com.izeye.throwaway.web.HomeController;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link HomeController} with {@link WebTestClient}.
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HomeControllerWebTestClientTests {
+class HomeControllerWebTestClientTests {
 
 	@Autowired
 	private WebTestClient webTestClient;
 
 	@Test
-	public void testHelloWorld() {
+	void testHelloWorld() {
 		this.webTestClient.get().uri("/hello-world").exchange()
 				.expectStatus().isOk()
 				.expectBody(String.class).isEqualTo("Hello, world!");
 	}
 
 	@Test
-	public void testEcho() throws UnsupportedEncodingException {
+	void testEcho() throws UnsupportedEncodingException {
 		String value = "테스트";
 		String encodedValue = URLEncoder.encode(value, "UTF-8");
 
