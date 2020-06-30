@@ -1,7 +1,6 @@
 package learningtest.org.slf4j;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,17 +13,16 @@ import com.izeye.throwaway.Application;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(
 		webEnvironment = SpringBootTest.WebEnvironment.NONE,
 		classes = Application.class
 )
-public class LoggerTests {
+class LoggerTests {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Test
-	public void test() {
+	void test() {
 		log.info("Hello, world!");
 	}
 	

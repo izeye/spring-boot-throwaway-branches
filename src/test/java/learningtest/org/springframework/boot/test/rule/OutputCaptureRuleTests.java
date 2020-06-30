@@ -1,36 +1,34 @@
 package learningtest.org.springframework.boot.test.rule;
 
-import org.junit.Rule;
-import org.junit.Test;
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 
-import org.springframework.boot.test.system.OutputCaptureRule;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link OutputCaptureRule}.
+ * Tests for {@link OutputCaptureExtension}.
  *
  * @author Johnny Lim
  */
-public class OutputCaptureRuleTests {
-
-	@Rule
-	public OutputCaptureRule outputCaptureRule = new OutputCaptureRule();
+@ExtendWith(OutputCaptureExtension.class)
+class OutputCaptureRuleTests {
 
 	@Test
-	public void testStandardOutput() {
+	void testStandardOutput(CapturedOutput output) {
 		String message = "Hello, world!";
 
 		System.out.print(message);
-		assertThat(this.outputCaptureRule.toString()).isEqualTo(message);
+		assertThat(output.toString()).isEqualTo(message);
 	}
 
 	@Test
-	public void testStandardError() {
+	public void testStandardError(CapturedOutput output) {
 		String message = "Hello, world!";
 
 		System.err.print(message);
-		assertThat(this.outputCaptureRule.toString()).isEqualTo(message);
+		assertThat(output.toString()).isEqualTo(message);
 	}
 
 }

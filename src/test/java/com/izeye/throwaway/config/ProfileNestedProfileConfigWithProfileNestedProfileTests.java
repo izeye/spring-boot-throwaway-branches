@@ -6,9 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -17,16 +15,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ActiveProfiles({ "test", "nested" })
-public class ProfileNestedProfileConfigWithProfileNestedProfileTests {
+class ProfileNestedProfileConfigWithProfileNestedProfileTests {
 
 	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Test
-	public void test() {
+	void test() {
 		assertThat(this.applicationContext.getBean("stringInProfileNestedProfileConfig"))
 				.isEqualTo("string");
 		assertThat(this.applicationContext.getBean("integerInProfileNestedProfileConfig"))

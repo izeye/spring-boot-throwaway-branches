@@ -1,20 +1,19 @@
 package com.izeye.throwaway.service;
 
 import java.io.IOException;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link PathMatchingResourcePatternResolverService}.
  *
  * @author Johnny Lim
  */
-public class PathMatchingResourcePatternResolverServiceTests {
+class PathMatchingResourcePatternResolverServiceTests {
 
 	private final PathMatchingResourcePatternResolverService service = new PathMatchingResourcePatternResolverService();
 
 	@Test
-	public void test() throws IOException {
+	void test() throws IOException {
 		this.service.init();
 	}
 

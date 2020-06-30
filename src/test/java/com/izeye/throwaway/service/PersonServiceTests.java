@@ -1,11 +1,10 @@
 package com.izeye.throwaway.service;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -13,15 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
-public class PersonServiceTests {
+class PersonServiceTests {
 	
 	@Autowired
 	private PersonService personService;
 	
 	@Test
-	public void testGetMessage() {
+	void testGetMessage() {
 		assertThat(this.personService.getMessage()).isEqualTo("Hello, world!");
 	}
 	

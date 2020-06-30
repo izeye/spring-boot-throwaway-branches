@@ -5,9 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -15,9 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class ElasticsearchConfigTests {
+class ElasticsearchConfigTests {
 
 	@Resource
 	private TransportClient firstTransportClient;
@@ -26,7 +23,7 @@ public class ElasticsearchConfigTests {
 	private TransportClient secondTransportClient;
 
 	@Test
-	public void test() {
+	void test() {
 		assertThat(this.firstTransportClient.getClusterName()).isEqualTo("first");
 		assertThat(this.secondTransportClient.getClusterName()).isEqualTo("second");
 	}

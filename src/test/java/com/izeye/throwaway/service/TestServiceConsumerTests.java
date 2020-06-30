@@ -2,11 +2,8 @@ package com.izeye.throwaway.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -14,15 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class TestServiceConsumerTests {
+class TestServiceConsumerTests {
 
 	@Autowired
 	private TestServiceConsumer testServiceConsumer;
 
 	@Test
-	public void testLazy() {
+	void testLazy() {
 		assertThat(this.testServiceConsumer).isNotNull();
 		assertThat(LazyTestService.initialized).isFalse();
 

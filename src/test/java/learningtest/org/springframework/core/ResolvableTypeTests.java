@@ -2,8 +2,7 @@ package learningtest.org.springframework.core;
 
 import org.springframework.core.ResolvableType;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -11,10 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-public class ResolvableTypeTests {
+class ResolvableTypeTests {
 
 	@Test
-	public void test() {
+	void test() {
 		assertThat(new StringClass().getType()).isEqualTo(String.class);
 	}
 
