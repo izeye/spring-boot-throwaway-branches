@@ -45,6 +45,10 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok")
 }
 
+test {
+    useJUnitPlatform()
+}
+
 wrapper {
     gradleVersion = '6.5.1'
 }
