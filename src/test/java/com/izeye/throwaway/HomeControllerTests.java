@@ -3,10 +3,8 @@ package com.izeye.throwaway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,15 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Johnny Lim
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HomeControllerTests {
+class HomeControllerTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
 
 	@Test
-	public void testHelloWorld() {
+	void testHelloWorld() {
 		String message = this.restTemplate.getForObject("/hello-world", String.class);
 		assertThat(message).isEqualTo("Hello, world!");
 	}
