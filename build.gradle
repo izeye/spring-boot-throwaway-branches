@@ -57,8 +57,11 @@ jib {
     from.image = 'openjdk:8u222-slim'
     to.image = 'izeye/spring-boot-throwaway-branches'
 
-    // FIXME: See https://github.com/GoogleContainerTools/distroless/issues/253
-    container.jvmFlags = ["-Dfile.encoding=UTF-8"]
+    container {
+        // FIXME: See https://github.com/GoogleContainerTools/distroless/issues/253
+        jvmFlags = ["-Dfile.encoding=UTF-8"]
+        user = 'nobody:nogroup'
+    }
 }
 
 wrapper {
