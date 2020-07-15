@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: spring-boot-throwaway-branches
+  name: spring-boot-throwaway-branches
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-throwaway-branches
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: spring-boot-throwaway-branches
+    spec:
+      containers:
+      - image: izeye/spring-boot-throwaway-branches
+        name: spring-boot-throwaway-branches
+        resources: {}
+status: {}
