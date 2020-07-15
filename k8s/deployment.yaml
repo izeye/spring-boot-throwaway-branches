@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: spring-boot-throwaway-branches
   name: spring-boot-throwaway-branches
@@ -13,7 +12,6 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: spring-boot-throwaway-branches
     spec:
@@ -21,4 +19,3 @@ spec:
       - image: izeye/spring-boot-throwaway-branches
         name: spring-boot-throwaway-branches
         resources: {}
-status: {}

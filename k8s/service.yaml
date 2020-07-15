@@ -1,7 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
   labels:
     app: spring-boot-throwaway-branches
   name: spring-boot-throwaway-branches
@@ -14,5 +13,3 @@ spec:
   selector:
     app: spring-boot-throwaway-branches
   type: ClusterIP
-status:
-  loadBalancer: {}
