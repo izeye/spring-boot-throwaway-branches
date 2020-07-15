@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: spring-boot-throwaway-branches
+build:
+  artifacts:
+    - image: izeye/spring-boot-throwaway-branches
+      jib:
+        args: []
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yaml
+    - k8s/service.yaml
