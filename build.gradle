@@ -53,5 +53,5 @@ springBoot {
 jib.container.jvmFlags = ["-Dfile.encoding=UTF-8"]
 
 wrapper {
-    gradleVersion = '6.5'
+    gradleVersion = '6.5.1'
 }
