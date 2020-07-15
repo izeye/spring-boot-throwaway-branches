@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: spring-boot-throwaway-branches
+  name: spring-boot-throwaway-branches
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: spring-boot-throwaway-branches
+  type: ClusterIP

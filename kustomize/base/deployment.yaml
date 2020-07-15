@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: spring-boot-throwaway-branches
+  name: spring-boot-throwaway-branches
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-throwaway-branches
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: spring-boot-throwaway-branches
+    spec:
+      containers:
+      - image: izeye/spring-boot-throwaway-branches
+        name: spring-boot-throwaway-branches
+        resources:
+          requests:
+            memory: 256M
+            cpu: 500m
+          limits:
+            memory: 512M
+            cpu: 1000m
+        livenessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/liveness
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/readiness
+          failureThreshold: 3
+          periodSeconds: 10

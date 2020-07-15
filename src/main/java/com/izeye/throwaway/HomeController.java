@@ -3,6 +3,7 @@ package com.izeye.throwaway;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,12 +18,15 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping(path = "/")
 public class HomeController {
 
+	@Value("${greeting:Hello}")
+	private String greeting;
+
 	@Autowired
 	private RestTemplate restTemplate;
 
 	@GetMapping("/hello-world")
 	public String helloWorld() {
-		return "Hello, world!";
+		return this.greeting + ", world!";
 	}
 
 	@GetMapping("/httpServletRequest")
