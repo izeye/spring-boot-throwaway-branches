@@ -1,7 +1,6 @@
 FROM ubuntu:rolling
 
-RUN apt-get update
-RUN apt-get install -y openjdk-8-jdk
+RUN apt-get update && apt-get install -y openjdk-8-jdk
 
 COPY build/libs/*.jar /app.jar
 
