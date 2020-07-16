@@ -1,6 +1,4 @@
-FROM ubuntu:rolling
-
-RUN apt-get update && apt-get install -y --no-install-recommends openjdk-8-jre
+FROM openjdk:8u252-jre
 
 USER nobody:nogroup
 COPY --chown=nobody:nogroup build/libs/*.jar /app.jar
