@@ -1,4 +1,4 @@
-package com.izeye.throwaway;
+package com.izeye.throwaway.person.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,6 @@ import lombok.Data;
 public class Person {
 
 	private final String firstName;
-	private final String secondName;
+	private final String lastName;
 
 }
