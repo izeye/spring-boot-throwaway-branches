@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Johnny Lim
  */
-public interface PersonRepository extends CrudRepository<Person, Long> {
+public interface PersonRepository extends CrudRepository<Person, String> {
 }

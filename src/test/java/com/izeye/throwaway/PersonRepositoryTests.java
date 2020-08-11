@@ -22,7 +22,7 @@ class PersonRepositoryTests {
 
     @Test
     void test() {
-        Person person = new Person(1L, "Johnny", "Lim");
+        Person person = new Person("1", "Johnny", "Lim");
         this.repository.save(person);
 
         Person found = this.repository.findById(person.getId()).get();
@@ -41,8 +41,8 @@ class PersonRepositoryTests {
 
         this.repository.deleteAll();
 
-        Person person1 = new Person(1L, "Johnny", "Lim");
-        Person person2 = new Person(2L, "John", "Lim");
+        Person person1 = new Person("1", "Johnny", "Lim");
+        Person person2 = new Person("2", "John", "Lim");
         this.repository.save(person1);
         this.repository.save(person2);
         assertThat(this.repository.findAll()).hasSize(2);

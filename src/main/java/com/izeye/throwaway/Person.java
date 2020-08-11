@@ -16,7 +16,7 @@ import org.springframework.data.redis.core.RedisHash;
 @AllArgsConstructor
 public class Person {
 
-	private Long id;
+	private String id;
 	private String firstName;
 	private String lastName;
 

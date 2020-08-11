@@ -19,7 +19,7 @@ public class PersonController {
 	@GetMapping
 	public List<Person> findAll() {
 		List<Person> persons = new ArrayList<>();
-		persons.add(new Person(1L, "Johnny", "Lim"));
+		persons.add(new Person("1", "Johnny", "Lim"));
 		return persons;
 	}
 
