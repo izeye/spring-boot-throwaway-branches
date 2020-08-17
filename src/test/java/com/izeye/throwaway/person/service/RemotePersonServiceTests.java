@@ -8,8 +8,6 @@ import com.izeye.throwaway.person.domain.Person;
 import com.izeye.throwaway.person.domain.PersonWithItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import ru.lanwen.wiremock.ext.WiremockResolver;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -44,10 +42,10 @@ class RemotePersonServiceTests {
 				.collect(Collectors.toList());
 
 		long startTimeMillis = System.currentTimeMillis();
-		Flux<Person> persons = personService.getPersons(ids);
+		List<Person> persons = personService.getPersons(ids).collectList().block();
 		long elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis;
-		assertThat(persons.count().block()).isEqualTo(numOfRequests);
-		assertThat(elapsedTimeMillis).isLessThan(responseTime * 2);
+		assertThat(persons).hasSize(numOfRequests);
+		assertThat(elapsedTimeMillis).isLessThan(responseTime * 3);
 	}
 
 	@Test
@@ -71,9 +69,9 @@ class RemotePersonServiceTests {
 		}
 
 		long startTimeMillis = System.currentTimeMillis();
-		Flux<Person> persons = personService.getPersonAndOtherPerson(1L);
+		List<Person> persons = personService.getPersonAndOtherPerson(1L).collectList().block();
 		long elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis;
-		assertThat(persons.count().block()).isEqualTo(2);
+		assertThat(persons).hasSize(2);
 		assertThat(elapsedTimeMillis).isLessThan(responseTime * 2);
 	}
 
@@ -97,8 +95,11 @@ class RemotePersonServiceTests {
 					.withBody(String.format("{ \"id\": %d }", i))));
 		}
 
-		Mono<PersonWithItem> personWithItem = personService.getPersonWithItem(1L, 1L);
-		assertThat(personWithItem.block()).isNotNull();
+		long startTimeMillis = System.currentTimeMillis();
+		PersonWithItem personWithItem = personService.getPersonWithItem(1L, 1L).block();
+		long elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis;
+		assertThat(personWithItem).isNotNull();
+		assertThat(elapsedTimeMillis).isLessThan(responseTime * 2);
 	}
 
 }
