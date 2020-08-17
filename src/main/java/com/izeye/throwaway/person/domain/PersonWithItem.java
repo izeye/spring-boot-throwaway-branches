@@ -2,20 +2,17 @@ package com.izeye.throwaway.person.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
- * Person.
+ * {@link Person} with {@link Item}.
  *
  * @author Johnny Lim
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Person {
+public class PersonWithItem {
 
-	private Long id;
-	private String firstName;
-	private String lastName;
+	private final Person person;
+	private final Item item;
 
 }

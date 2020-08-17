@@ -43,6 +43,8 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.github.tomakehurst:wiremock-jre8:latest.release")
+    testImplementation("ru.lanwen.wiremock:wiremock-junit5:latest.release")
 }
 
 test {

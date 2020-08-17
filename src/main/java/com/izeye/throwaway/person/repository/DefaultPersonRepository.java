@@ -14,7 +14,7 @@ public class DefaultPersonRepository implements PersonRepository {
 
     @Override
     public Flux<Person> findAll() {
-        return Flux.just(new Person("Johnny", "Lim"));
+        return Flux.just(new Person(1L, "Johnny", "Lim"));
     }
 
 }
