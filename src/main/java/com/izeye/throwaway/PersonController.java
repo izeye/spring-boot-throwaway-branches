@@ -2,6 +2,7 @@ package com.izeye.throwaway;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.LongStream;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class PersonController {
 	@GetMapping
 	public List<Person> findAll() {
 		List<Person> persons = new ArrayList<>();
-		persons.add(this.personService.get(1L));
+		LongStream.range(0, 100).forEach((id) -> persons.add(this.personService.get(id)));
 		return persons;
 	}
 
