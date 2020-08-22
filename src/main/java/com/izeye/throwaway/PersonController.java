@@ -16,10 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/persons")
 public class PersonController {
 
+	private final PersonService personService;
+
+	public PersonController(PersonService personService) {
+		this.personService = personService;
+	}
+
 	@GetMapping
 	public List<Person> findAll() {
 		List<Person> persons = new ArrayList<>();
-		persons.add(new Person(1L, "Johnny", "Lim"));
+		persons.add(this.personService.get(1L));
 		return persons;
 	}
 
