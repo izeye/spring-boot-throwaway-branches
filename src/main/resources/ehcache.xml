@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns='http://www.ehcache.org/v3'>
+    <cache alias="persons">
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.izeye.throwaway.Person</value-type>
+        <expiry>
+            <ttl unit="minutes">1</ttl>
+        </expiry>
+        <resources>
+            <heap unit="MB">1</heap>
+        </resources>
+    </cache>
+</config>
