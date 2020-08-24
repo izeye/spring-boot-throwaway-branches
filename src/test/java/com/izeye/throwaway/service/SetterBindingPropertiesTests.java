@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link ConstructorBindingProperties}.
+ * Tests for {@link SetterBindingProperties}.
  *
  * @author Johnny Lim
  */
 @SpringBootTest
-class ConstructorBindingPropertiesTests {
+class SetterBindingPropertiesTests {
 
-	private final ConstructorBindingProperties properties;
+	private final SetterBindingProperties properties;
 
-	ConstructorBindingPropertiesTests(@Autowired ConstructorBindingProperties properties) {
+	SetterBindingPropertiesTests(@Autowired SetterBindingProperties properties) {
 		this.properties = properties;
 	}
 
@@ -27,6 +27,8 @@ class ConstructorBindingPropertiesTests {
 		assertThat(this.properties.getLastName()).isEqualTo("Lim");
 		assertThat(this.properties.getNested().getFirst()).isEqualTo("nested first");
 		assertThat(this.properties.getNested().getSecond()).isEqualTo("nested second");
+		assertThat(this.properties.getInitializedNested().getFirst()).isEqualTo("initialized nested first");
+		assertThat(this.properties.getInitializedNested().getSecond()).isEqualTo("initialized nested second");
 	}
 
 }

@@ -5,29 +5,30 @@ import javax.validation.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.validation.annotation.Validated;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * {@link ConstructorBinding}-based {@link ConfigurationProperties}.
+ * Setter-based {@link ConfigurationProperties}.
  *
  * @author Johnny Lim
  */
-@ConfigurationProperties("constructor-binding")
-@ConstructorBinding
+@ConfigurationProperties("setter-binding")
 @Validated
 @Data
-@AllArgsConstructor
-public class ConstructorBindingProperties {
+public class SetterBindingProperties {
 
 	@NotEmpty
-	private final String firstName;
+	private String firstName;
 	@NotEmpty
-	private final String lastName;
+	private String lastName;
 
 	// Validation doesn't work.
 	@Valid
-	private final Nested nested;
+	private Nested nested;
+
+	// Validation works.
+	@Valid
+	private Nested initializedNested = new Nested();
 
 	@Data
 	public static class Nested {
