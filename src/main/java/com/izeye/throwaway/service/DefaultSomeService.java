@@ -1,6 +1,5 @@
 package com.izeye.throwaway.service;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
  * @author Johnny Lim
  */
 @Service
-@EnableConfigurationProperties(SomeProperties.class)
 public class DefaultSomeService implements SomeService {
 
 	private final SomeProperties properties;
