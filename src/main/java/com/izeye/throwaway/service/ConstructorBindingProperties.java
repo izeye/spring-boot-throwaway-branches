@@ -4,8 +4,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.validation.annotation.Validated;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -17,7 +17,6 @@ import lombok.Data;
 @ConstructorBinding
 @Validated
 @Data
-@AllArgsConstructor
 public class ConstructorBindingProperties {
 
 	@NotEmpty
@@ -28,6 +27,12 @@ public class ConstructorBindingProperties {
 	// Validation doesn't work.
 	@Valid
 	private final Nested nested;
+
+	public ConstructorBindingProperties(String firstName, String lastName, @DefaultValue Nested nested) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.nested = nested;
+	}
 
 	@Data
 	public static class Nested {
