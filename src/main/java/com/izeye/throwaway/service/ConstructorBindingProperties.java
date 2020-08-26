@@ -24,7 +24,6 @@ public class ConstructorBindingProperties {
 	@NotEmpty
 	private final String lastName;
 
-	// Validation doesn't work.
 	@Valid
 	private final Nested nested;
 
@@ -38,9 +37,14 @@ public class ConstructorBindingProperties {
 	public static class Nested {
 
 		@NotEmpty
-		private String first;
+		private final String first;
 		@NotEmpty
-		private String second;
+		private final String second;
+
+		public Nested(String first, String second) {
+			this.first = first;
+			this.second = second;
+		}
 
 	}
 
