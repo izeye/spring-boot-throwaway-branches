@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.0.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.4.0-M2")
     }
 }
 
@@ -38,6 +38,10 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+test {
+    useJUnitPlatform()
 }
 
 wrapper {
