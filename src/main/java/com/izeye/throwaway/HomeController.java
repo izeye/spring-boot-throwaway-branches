@@ -1,5 +1,7 @@
 package com.izeye.throwaway;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +30,10 @@ public class HomeController {
 	}
 
 	@GetMapping("/httpServletRequest")
-	public String httpServletRequest(HttpServletRequest request) {
-		return request.toString();
+	public Map<String, Map<String, ?>> httpServletRequest(HttpServletRequest request) {
+		Map<String, Map<String, ?>> response = new LinkedHashMap<>();
+		response.put("parameters", request.getParameterMap());
+		return response;
 	}
 
 	@GetMapping("/throwException")
