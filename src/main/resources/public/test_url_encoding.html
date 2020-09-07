@@ -1,0 +1,17 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Test URL encoding</title>
+</head>
+<body>
+<a href="http://localhost:8080/httpServletRequest?name=테스트">Test a parameter!</a><br/>
+<a href="http://localhost:8080/test/path/테스트">Test a path!</a><br/>
+<img src="http://localhost:8080/httpServletRequest?name=테스트" alt="no image"/><br/>
+<img src="http://localhost:8080/test/path/테스트" alt="no image"/><br/>
+<a href="http://localhost:8080/test/redirect/path">Test a redirect path!</a><br/>
+<a href="http://localhost:8080/test/redirect/parameter">Test a redirect parameter!</a><br/>
+<a href="http://localhost:8080/test/redirect/fragment">Test a redirect fragment!</a><br/>
+<a href="http://localhost:8080/test/redirect/fragment_unencoded">Test a redirect unencoded fragment!</a><br/>
+<a href="http://localhost:8080/test/redirect/fragment_encoded">Test a redirect encoded fragment!</a><br/>
+</body>
+</html>
