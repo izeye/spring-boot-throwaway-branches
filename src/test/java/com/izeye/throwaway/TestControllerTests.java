@@ -39,7 +39,7 @@ class TestControllerTests {
 	void firstDelay() {
 		String uri = "http://localhost:" + this.port + "/test/first_delay";
 		assertThatThrownBy(() -> this.webClient.get().uri(uri).retrieve().bodyToMono(String.class).block())
-				.isInstanceOf(ReadTimeoutException.class);
+				.hasCauseExactlyInstanceOf(ReadTimeoutException.class);
 	}
 
 	@Test
