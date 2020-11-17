@@ -33,6 +33,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+    implementation("org.elasticsearch.client:elasticsearch-rest-client-sniffer:7.9.3")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
