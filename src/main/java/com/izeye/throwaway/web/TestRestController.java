@@ -25,9 +25,9 @@ public class TestRestController {
 	}
 
 	@GetMapping("/sleep")
-	public String sleep(@RequestParam int seconds) throws InterruptedException {
-		TimeUnit.SECONDS.sleep(seconds);
-		return "Slept for " + seconds + " seconds.";
+	public String sleep(@RequestParam int milliseconds) throws InterruptedException {
+		TimeUnit.MILLISECONDS.sleep(milliseconds);
+		return "Slept for " + milliseconds + " ms.";
 	}
 
 }
