@@ -1,26 +1,8 @@
-buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-        maven { url "https://repo.spring.io/libs-release" }
-        maven { url "https://repo.spring.io/libs-milestone" }
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url 'https://repo.spring.io/plugins-release' }
-    }
-
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("org.springframework.build.gradle:propdeps-plugin:$propdepsPluginVersion")
-        classpath("com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion")
-    }
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'propdeps'
-apply plugin: 'com.github.ben-manes.versions'
 
 sourceCompatibility = 1.8
 
@@ -35,21 +17,19 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-cache")
-    compile("net.sf.ehcache:ehcache")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
+    implementation("net.sf.ehcache:ehcache")
 
-    compile("com.fasterxml.jackson.core:jackson-databind")
-    compile("com.google.code.gson:gson")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
-    provided("org.projectlombok:lombok")
-
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-task buildScriptDependencies(type: org.gradle.api.tasks.diagnostics.DependencyReportTask) {
-    configurations = project.buildscript.configurations
+test {
+    useJUnitPlatform()
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+wrapper {
+    gradleVersion = '6.8'
 }

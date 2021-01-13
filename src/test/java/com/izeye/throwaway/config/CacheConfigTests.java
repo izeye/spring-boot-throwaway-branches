@@ -3,31 +3,26 @@ package com.izeye.throwaway.config;
 import com.izeye.throwaway.domain.Person;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by izeye on 16. 5. 21..
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class CacheConfigTests {
+class CacheConfigTests {
 	
 	@Autowired
 	CacheManager cacheManager;
 	
 	@Test
-	public void test() {
+	void test() {
 		assertThat(this.cacheManager).isExactlyInstanceOf(EhCacheCacheManager.class);
 		Cache cache = this.cacheManager.getCache("persons");
 		cache.put(1L, new Person());

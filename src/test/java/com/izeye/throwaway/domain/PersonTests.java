@@ -1,6 +1,6 @@
 package com.izeye.throwaway.domain;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -8,10 +8,10 @@ import static org.hamcrest.core.Is.is;
 /**
  * Created by izeye on 15. 9. 19..
  */
-public class PersonTests {
+class PersonTests {
 	
 	@Test
-	public void test() {
+	void test() {
 		long personId = 1L;
 		
 		Person person = new Person();
