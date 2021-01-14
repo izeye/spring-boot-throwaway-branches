@@ -14,7 +14,7 @@ public class DefaultPersonService implements PersonService {
 
 	@Override
 	public Person get(Long id) {
-		return new Person(id, "Johnny", "Lim");
+		return new Person(id, "한글 이름", "한글 성");
 	}
 
 }
