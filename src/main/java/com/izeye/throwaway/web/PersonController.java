@@ -28,4 +28,10 @@ public class PersonController {
 		return this.personService.get(id);
 	}
 
+	// NOTE: This is necessary for Spring Boot 2.0.x apps.
+	@GetMapping(path = "/{id}/forceContentTypeUtf8Charset", produces = "application/json; charset=utf-8")
+	public Person getWithContentTypeUtf8Charset(@PathVariable Long id) {
+		return this.personService.get(id);
+	}
+
 }
