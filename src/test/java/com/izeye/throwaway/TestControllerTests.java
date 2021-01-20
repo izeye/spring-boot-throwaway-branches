@@ -10,6 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.nio.charset.StandardCharsets;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -27,11 +29,15 @@ class TestControllerTests {
     void rejectHeaderValueCanBeDisabled() {
         String disallowedHeaderValue = "č";
 
+        // Note that Tomcat converts header value bytes to characters using ISO-8859-1.
+        String expectedResponseBody = new String(disallowedHeaderValue.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
+
         HttpHeaders headers = new HttpHeaders();
         headers.add("My-Header", disallowedHeaderValue);
         HttpEntity<Void> request = new HttpEntity<>(headers);
         ResponseEntity<String> response = this.restTemplate.exchange("/test/reject-header-value", HttpMethod.GET, request, String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isEqualTo(expectedResponseBody);
     }
 
 }
