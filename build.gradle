@@ -35,6 +35,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
 
+    // Note that this will make RestTemplate use HttpComponentsClientHttpRequestFactory instead of
+    // SimpleClientHttpRequestFactory.
+    implementation("org.apache.httpcomponents:httpclient")
+
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
