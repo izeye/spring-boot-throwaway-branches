@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Controller;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.izeye.throwaway.web.HomeController;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.bind.annotation.RestController;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -51,6 +54,12 @@ class HomeControllerTests {
 		this.mockMvc.perform(get("/responseEntityCacheControlMaxAge"))
 				.andExpect(status().isOk())
 				.andExpect(header().string(HttpHeaders.CACHE_CONTROL, "max-age=600"));
+	}
+
+	@Test
+	void isAnnotationPresent() {
+		assertThat(HomeController.class.isAnnotationPresent(RestController.class)).isTrue();
+		assertThat(HomeController.class.isAnnotationPresent(Controller.class)).isFalse();
 	}
 
 }
