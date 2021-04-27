@@ -30,4 +30,14 @@ public class TestRestController {
 		return "Slept for " + milliseconds + " ms.";
 	}
 
+	@GetMapping("/request-parameter")
+	public String requestParameter(@RequestParam String name) {
+		return "Your name is " + name + ".";
+	}
+
+	@GetMapping("/request-parameter-without-annotation")
+	public String requestParameterWithoutAnnotation(String name) {
+		return "Your name is " + name + ".";
+	}
+
 }
