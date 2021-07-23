@@ -81,5 +81,10 @@ public class TestController {
 		Map<String, Object> model = Collections.singletonMap("person", person);
 		return new ModelAndView("test_missing_field", model);
 	}
+
+	@GetMapping("/test-reference-bean")
+	public ModelAndView testReferenceBean() {
+		return new ModelAndView("test_reference_bean");
+	}
 	
 }
