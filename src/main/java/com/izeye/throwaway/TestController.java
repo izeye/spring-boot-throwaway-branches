@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Collections;
+import java.util.Map;
+
 /**
  * Created by izeye on 15. 10. 7..
  */
@@ -67,6 +70,16 @@ public class TestController {
 		model.addAttribute("firstName", null);
 		model.addAttribute("lastName", "null");
 		return "test_switch";
+	}
+
+	@GetMapping("/test-missing-field")
+	public ModelAndView testMissingField() {
+		Person person = new Person();
+		person.setFirstName("Johnny");
+		person.setLastName("Lim");
+		person.setAge(20);
+		Map<String, Object> model = Collections.singletonMap("person", person);
+		return new ModelAndView("test_missing_field", model);
 	}
 	
 }
