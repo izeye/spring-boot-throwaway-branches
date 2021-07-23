@@ -23,17 +23,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ThymeleafTemplateTestRendererTests {
 
     @Autowired
-    private ThymeleafTemplateTestRenderer verifier;
+    private ThymeleafTemplateTestRenderer renderer;
 
     @Test
-    void verify() {
+    void render() {
         Map<String, Object> model = Collections.emptyMap();
 
-        assertThatNoException().isThrownBy(() -> verifier.render("test", model));
+        assertThatNoException().isThrownBy(() -> renderer.render("test", model));
     }
 
     @Test
-    void verifyWithMissingField() {
+    void renderWithMissingField() {
         Person person = new Person();
         person.setFirstName("Johnny");
         person.setLastName("Lim");
@@ -41,15 +41,15 @@ class ThymeleafTemplateTestRendererTests {
 
         Map<String, Object> model = Collections.singletonMap("person", person);
 
-        assertThatThrownBy(() -> verifier.render("test_missing_field", model))
+        assertThatThrownBy(() -> renderer.render("test_missing_field", model))
                 .hasCauseInstanceOf(SpelEvaluationException.class);
     }
 
     @Test
-    void verifyWithReferenceBean() {
+    void renderWithReferenceBean() {
         Map<String, Object> model = Collections.emptyMap();
 
-        assertThatNoException().isThrownBy(() -> verifier.render("test_reference_bean", model));
+        assertThatNoException().isThrownBy(() -> renderer.render("test_reference_bean", model));
     }
 
     @TestConfiguration
