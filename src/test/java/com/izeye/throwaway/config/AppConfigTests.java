@@ -39,12 +39,7 @@ class AppConfigTests {
 		assertThat(Objects.deepEquals(nullBean, null)).isFalse();
 
 		assertThat(nullBean).isNotNull();
-
-		// AssertJ's isEqualTo() has been changed somewhere between 3.15.0 and 3.16.1.
-		// 3.15.0 uses java.util.Objects.equals(), but 3.16.1 uses java.util.Objects.deepEquals().
-		// I'm not sure if this is intentional, but it's diverged with Object.equals() anyway.
-//		assertThat(nullBean).isEqualTo(null);
-		assertThat(nullBean).isNotEqualTo(null);
+		assertThat(nullBean).isEqualTo(null);
 	}
 	
 }
