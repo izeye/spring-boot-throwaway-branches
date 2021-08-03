@@ -2,13 +2,12 @@ buildscript {
     repositories {
         mavenLocal()
         jcenter()
-        maven { url "https://repo.spring.io/libs-release" }
-        maven { url "https://repo.spring.io/libs-milestone" }
+        maven { url "https://repo.spring.io/milestone" }
         maven { url "https://repo.spring.io/snapshot" }
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.5.0-M1")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.6.0-M1")
     }
 }
 
@@ -28,8 +27,7 @@ version = '1.0'
 
 repositories {
     jcenter()
-    maven { url "https://repo.spring.io/libs-release" }
-    maven { url "https://repo.spring.io/libs-milestone" }
+    maven { url "https://repo.spring.io/milestone" }
     maven { url "https://repo.spring.io/snapshot" }
     mavenLocal()
 }
