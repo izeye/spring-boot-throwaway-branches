@@ -13,6 +13,21 @@ class HttpRequestLogToolsTests {
 
     @Test
     void convertRequestLogToCurl() {
+        String expected = "curl -s -X GET \"http://localhost:8080/persons/1\" \\\n" +
+                "  -H \"host: localhost:8080\" \\\n" +
+                "  -H \"user-agent: curl/7.64.1\" \\\n" +
+                "  -H \"accept: */*\"";
+
+        String requestLogLines = "GET /persons/1 HTTP/1.1\n" +
+                "host: localhost:8080\n" +
+                "user-agent: curl/7.64.1\n" +
+                "accept: */*";
+
+        assertThat(HttpRequestLogTools.convertRequestLogToCurl(requestLogLines)).isEqualTo(expected);
+    }
+
+    @Test
+    void convertRequestLogToCurlWhenRequestBodyIsPresent() {
         String expected = "curl -s -X POST \"http://localhost:8080/persons/echo\" \\\n" +
                 "  -H \"host: localhost:8080\" \\\n" +
                 "  -H \"user-agent: curl/7.64.1\" \\\n" +
@@ -38,10 +53,7 @@ class HttpRequestLogToolsTests {
                 "  \"secondName\": \"Lim\"\n" +
                 "}";
 
-        String curl = HttpRequestLogTools.convertRequestLogToCurl(requestLogLines);
-        System.out.println(curl);
-
-        assertThat(curl).isEqualTo(expected);
+        assertThat(HttpRequestLogTools.convertRequestLogToCurl(requestLogLines)).isEqualTo(expected);
     }
 
 }

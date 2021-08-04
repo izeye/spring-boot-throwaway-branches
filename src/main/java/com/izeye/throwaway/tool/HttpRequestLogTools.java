@@ -7,6 +7,16 @@ package com.izeye.throwaway.tool;
  */
 public final class HttpRequestLogTools {
 
+    public static void main(String[] args) {
+        String requestLogLines = "GET /persons/1 HTTP/1.1\n" +
+                "host: localhost:8080\n" +
+                "user-agent: curl/7.64.1\n" +
+                "accept: */*";
+
+        String curl = HttpRequestLogTools.convertRequestLogToCurl(requestLogLines);
+        System.out.println(curl);
+    }
+
     public static String convertRequestLogToCurl(String requestLogLines) {
         String[] lines = requestLogLines.split("\n");
         String[] firstLine = lines[0].split(" ");
@@ -39,7 +49,11 @@ public final class HttpRequestLogTools {
                 break;
             }
         }
-        return "curl -s -X " + method + " \"http://" + host + uri + "\" \\\n" + headerOptions + " \\\n --data '" + body + "'";
+        return "curl -s -X " + method + " \"http://" + host + uri + "\" \\\n" + headerOptions + appendBody(body);
+    }
+
+    private static String appendBody(StringBuilder body) {
+        return body.length() > 0 ? " \\\n --data '" + body + "'" : "";
     }
 
     private HttpRequestLogTools() {
