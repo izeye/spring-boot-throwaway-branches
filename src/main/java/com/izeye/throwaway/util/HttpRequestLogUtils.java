@@ -1,11 +1,11 @@
 package com.izeye.throwaway.util;
 
 /**
- * Utilities for logback-access.
+ * Utilities for HTTP request logs.
  *
  * @author Johnny Lim
  */
-public final class LogbackAccessUtils {
+public final class HttpRequestLogUtils {
 
     public static String convertRequestLogToCurl(String requestLogLines) {
         String[] lines = requestLogLines.split("\n");
@@ -42,7 +42,7 @@ public final class LogbackAccessUtils {
         return "curl -s -X " + method + " \"http://" + host + uri + "\" \\\n" + headerOptions + " \\\n --data '" + body + "'";
     }
 
-    private LogbackAccessUtils() {
+    private HttpRequestLogUtils() {
     }
 
 }

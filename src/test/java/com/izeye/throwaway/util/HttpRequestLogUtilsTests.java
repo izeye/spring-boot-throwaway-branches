@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link LogbackAccessUtils}.
+ * Tests for {@link HttpRequestLogUtils}.
  *
  * @author Johnny Lim
  */
-class LogbackAccessUtilsTests {
+class HttpRequestLogUtilsTests {
 
     @Test
     void convertRequestLogToCurl() {
@@ -38,7 +38,7 @@ class LogbackAccessUtilsTests {
                 "  \"secondName\": \"Lim\"\n" +
                 "}";
 
-        String curl = LogbackAccessUtils.convertRequestLogToCurl(requestLogLines);
+        String curl = HttpRequestLogUtils.convertRequestLogToCurl(requestLogLines);
         System.out.println(curl);
 
         assertThat(curl).isEqualTo(expected);
