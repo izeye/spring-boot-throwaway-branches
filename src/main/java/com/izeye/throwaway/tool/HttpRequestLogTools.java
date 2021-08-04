@@ -1,11 +1,11 @@
-package com.izeye.throwaway.util;
+package com.izeye.throwaway.tool;
 
 /**
- * Utilities for HTTP request logs.
+ * Tools for HTTP request logs.
  *
  * @author Johnny Lim
  */
-public final class HttpRequestLogUtils {
+public final class HttpRequestLogTools {
 
     public static String convertRequestLogToCurl(String requestLogLines) {
         String[] lines = requestLogLines.split("\n");
@@ -42,7 +42,7 @@ public final class HttpRequestLogUtils {
         return "curl -s -X " + method + " \"http://" + host + uri + "\" \\\n" + headerOptions + " \\\n --data '" + body + "'";
     }
 
-    private HttpRequestLogUtils() {
+    private HttpRequestLogTools() {
     }
 
 }

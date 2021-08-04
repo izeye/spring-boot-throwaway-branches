@@ -1,15 +1,15 @@
-package com.izeye.throwaway.util;
+package com.izeye.throwaway.tool;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Tests for {@link HttpRequestLogUtils}.
+ * Tests for {@link HttpRequestLogTools}.
  *
  * @author Johnny Lim
  */
-class HttpRequestLogUtilsTests {
+class HttpRequestLogToolsTests {
 
     @Test
     void convertRequestLogToCurl() {
@@ -38,7 +38,7 @@ class HttpRequestLogUtilsTests {
                 "  \"secondName\": \"Lim\"\n" +
                 "}";
 
-        String curl = HttpRequestLogUtils.convertRequestLogToCurl(requestLogLines);
+        String curl = HttpRequestLogTools.convertRequestLogToCurl(requestLogLines);
         System.out.println(curl);
 
         assertThat(curl).isEqualTo(expected);
