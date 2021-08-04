@@ -1,0 +1,15 @@
+<configuration>
+    <appender name="HTTP_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/http/http.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/http/http.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxHistory>2</maxHistory>
+            <maxFileSize>300MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%t{yyyy-MM-dd HH:mm:ss.SSS}%n%fullRequest%n%n%fullResponse</pattern>
+        </encoder>
+    </appender>
+
+    <appender-ref ref="HTTP_APPENDER" />
+</configuration>
