@@ -35,6 +35,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter")
 
     compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
