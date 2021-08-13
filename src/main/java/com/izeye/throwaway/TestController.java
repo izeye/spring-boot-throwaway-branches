@@ -86,5 +86,12 @@ public class TestController {
 	public ModelAndView testReferenceBean() {
 		return new ModelAndView("test_reference_bean");
 	}
+
+	@GetMapping("/test_literal_substitution")
+	public String testLiteralSubstitution(Model model) {
+		model.addAttribute("attribute1", "value1");
+		model.addAttribute("attribute2", "value2");
+		return "test_literal_substitution";
+	}
 	
 }
