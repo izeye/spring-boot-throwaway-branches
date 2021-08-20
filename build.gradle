@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-    id "com.gorylenko.gradle-git-properties" version "1.5.1"
+    id "com.gorylenko.gradle-git-properties" version "2.3.1"
 }
 
 apply plugin: 'java'
