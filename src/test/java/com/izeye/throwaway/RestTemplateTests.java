@@ -29,4 +29,11 @@ class RestTemplateTests {
                 .isInstanceOf(HttpClientErrorException.NotFound.class);
     }
 
+    @Test
+    void badRequest(@Autowired RestTemplateBuilder restTemplateBuilder) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        assertThatThrownBy(() -> restTemplate.exchange("http://localhost:" + port + "/test/request-parameter", HttpMethod.GET, null, String.class))
+                .isInstanceOf(HttpClientErrorException.BadRequest.class);
+    }
+
 }
