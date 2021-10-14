@@ -35,6 +35,11 @@ public class TestRestController {
 		return "Your name is " + name + ".";
 	}
 
+	@GetMapping("/request-parameters")
+	public String requestParameters(@RequestParam String p1, @RequestParam String p2) {
+		return "p1: " + p1 + ", p2: " + p2;
+	}
+
 	@GetMapping("/request-parameter-without-annotation")
 	public String requestParameterWithoutAnnotation(String name) {
 		return "Your name is " + name + ".";
