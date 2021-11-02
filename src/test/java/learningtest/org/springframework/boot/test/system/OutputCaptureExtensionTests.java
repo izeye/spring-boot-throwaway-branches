@@ -19,7 +19,7 @@ class OutputCaptureExtensionTests {
     void getOut(CapturedOutput output) {
         String message = "Hello, world!";
         System.out.println(message);
-        assertThat(output.getOut()).contains(message);
+        assertThat(output).contains(message);
     }
 
 }
