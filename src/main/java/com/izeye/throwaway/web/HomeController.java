@@ -58,6 +58,7 @@ public class HomeController {
 		map.put("firstName", "Johnny");
 		map.put("lastName", "Lim");
 		map.put("age", 20);
+		map.put("memo", "테스트");
 		return map;
 	}
 

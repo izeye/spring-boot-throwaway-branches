@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,6 +62,11 @@ class HomeControllerTests {
 	void isAnnotationPresent() {
 		assertThat(HomeController.class.isAnnotationPresent(RestController.class)).isTrue();
 		assertThat(HomeController.class.isAnnotationPresent(Controller.class)).isFalse();
+	}
+
+	@Test
+	void printWithUtf8() throws Exception {
+		this.mockMvc.perform(get("/map").header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)).andDo(print());
 	}
 
 }
