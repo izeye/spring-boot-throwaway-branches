@@ -1,5 +1,8 @@
 package com.izeye.throwaway.web;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -7,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Test {@link RestController}.
@@ -43,6 +48,21 @@ public class TestRestController {
 	@GetMapping("/request-parameter-without-annotation")
 	public String requestParameterWithoutAnnotation(String name) {
 		return "Your name is " + name + ".";
+	}
+
+	@GetMapping("/print-all-headers")
+	public Map<String, String> printAllHeaders(HttpServletRequest request) {
+		return getAllHttpHeaders(request);
+	}
+
+	private Map<String, String> getAllHttpHeaders(HttpServletRequest request) {
+		Map<String, String> headers = new HashMap<>();
+		Enumeration<String> headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String name = headerNames.nextElement();
+			headers.put(name, request.getHeader(name));
+		}
+		return headers;
 	}
 
 }
