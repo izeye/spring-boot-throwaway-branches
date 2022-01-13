@@ -1,6 +1,7 @@
 package com.izeye.throwaway;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
@@ -25,8 +26,9 @@ class DuplicateAcceptDetectedTests {
     @LocalServerPort
     private int port;
 
-    @Test
-    void test() throws IOException, InterruptedException {
+    @ParameterizedTest
+    @ValueSource(booleans = { true, false })
+    void test(boolean tryToConnectWithAnotherLocalPortInTheMiddle) throws IOException, InterruptedException {
         InetAddress remoteAddress = InetAddress.getByName("localhost");
         int remotePort = this.port;
 
@@ -36,6 +38,11 @@ class DuplicateAcceptDetectedTests {
         System.out.println("Local port: " + localPort);
 
         socket.close();
+
+        if (tryToConnectWithAnotherLocalPortInTheMiddle) {
+            Socket anotherSocket = new Socket(remoteAddress, remotePort, null, 0);
+            System.out.println("Another local port: " + anotherSocket.getLocalPort());
+        }
 
         System.out.println(String.format("Sleep for 2 * MSL (%d ms)...", TIME_WAIT.toMillis()));
         TimeUnit.MILLISECONDS.sleep(TIME_WAIT.toMillis());
@@ -51,6 +58,9 @@ class DuplicateAcceptDetectedTests {
                 TimeUnit.SECONDS.sleep(1);
             }
         }
+
+        // Wait for Tomcat to react.
+        TimeUnit.SECONDS.sleep(1);
     }
 
     private static void connect(InetAddress remoteAddress, int remotePort, int localPort) throws IOException {
