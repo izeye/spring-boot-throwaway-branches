@@ -38,7 +38,7 @@ class DocumentXmlViewTestControllerDocumentation {
 										.description("Persons").type(JsonFieldType.ARRAY),
                                 fieldWithPath("persons/person")
                                         .description("Person").type(JsonFieldType.OBJECT),
-                                fieldWithPath("persons/person/id")
+                                fieldWithPath("persons/person[@id]")
                                         .description("ID for person").type(JsonFieldType.NUMBER),
                                 fieldWithPath("persons/person/personName")
                                         .description("Name for person").type(JsonFieldType.OBJECT),

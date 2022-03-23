@@ -1,6 +1,5 @@
 <persons>
-    <person>
-        <id>1</id>
+    <person id="1">
         <personName>
             <firstName>Johnny</firstName>
             <lastName>Lim</lastName>
