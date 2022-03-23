@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureRestDocs("build/generated-snippets")
+@AutoConfigureRestDocs
 class DocumentXmlViewTestControllerDocumentation {
 
     @Autowired
