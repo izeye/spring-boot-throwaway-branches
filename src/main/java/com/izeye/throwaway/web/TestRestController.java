@@ -2,6 +2,7 @@ package com.izeye.throwaway.web;
 
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.util.WebUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -53,6 +56,15 @@ public class TestRestController {
 	@GetMapping("/print-all-headers")
 	public Map<String, String> printAllHeaders(HttpServletRequest request) {
 		return getAllHttpHeaders(request);
+	}
+
+	@GetMapping("/print-all-cookies")
+	public Map<String, String> printAllCookies(HttpServletRequest request) {
+		Map<String, String> map = new LinkedHashMap<>();
+		for (Cookie cookie : request.getCookies()) {
+			map.put(cookie.getName(), cookie.getValue());
+		}
+		return map;
 	}
 
 	private Map<String, String> getAllHttpHeaders(HttpServletRequest request) {
