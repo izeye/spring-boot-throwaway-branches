@@ -1,9 +1,7 @@
 package com.izeye.throwaway.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import com.izeye.throwaway.domain.Person;
 import com.izeye.throwaway.service.PersonService;
@@ -15,6 +13,7 @@ import com.izeye.throwaway.service.PersonService;
  */
 @RestController
 @RequestMapping(path = "/persons")
+@Slf4j
 public class PersonController {
 
 	private final PersonService personService;
@@ -32,6 +31,12 @@ public class PersonController {
 	@GetMapping(path = "/{id}/forceContentTypeUtf8Charset", produces = "application/json; charset=utf-8")
 	public Person getWithContentTypeUtf8Charset(@PathVariable Long id) {
 		return this.personService.get(id);
+	}
+
+	@PostMapping
+	public Person add(@RequestBody Person person) {
+		log.info("Person: {}", person);
+		return person;
 	}
 
 }

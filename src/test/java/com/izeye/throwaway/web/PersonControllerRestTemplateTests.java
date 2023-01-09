@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Johnny Lim
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class PersonControllerTests {
+class PersonControllerRestTemplateTests {
 
     @LocalServerPort
     private int port;
