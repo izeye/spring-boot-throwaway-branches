@@ -16,9 +16,10 @@ class UriComponentsBuilderTests {
     void test() {
         String uriString = UriComponentsBuilder.fromHttpUrl("https://www.izeye.com")
                 .path("/")
-                .queryParam("name", "값")
+                .queryParam("name1", "값1")
+                .queryParam("name2", "값2")
                 .toUriString();
-        assertThat(uriString).isEqualTo("https://www.izeye.com/?name=%EA%B0%92");
+        assertThat(uriString).isEqualTo("https://www.izeye.com/?name1=%EA%B0%921&name2=%EA%B0%922");
     }
 
 }
